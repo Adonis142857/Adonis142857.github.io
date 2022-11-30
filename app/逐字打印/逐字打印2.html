@@ -1,0 +1,29 @@
+​
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Js逐字显示</title>
+<link rel="stylesheet" type="text/css" href="./css/css.css">
+    
+<script language="javascript">
+ content = "运动之后有三忌：1坐下休息；2立即洗澡；3进食大量甜食，以及凉水（要喝温开水）";
+ i = 0;
+ function show(){
+ str  = content.substr(0,i);
+ txt.innerHTML = str + "_";
+ i++;
+ setTimeout("show()",20); }
+</script>
+</head>
+<style type="text/css">
+    div {
+        width:980px;
+        margin:10px auto;
+        color:green;
+        font-family:weibei;
+    }
+</style>
+<body onLoad="show()">
+<div id="txt"></div>
+</body>
+</html> 

@@ -1,0 +1,37 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>文案</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="./css/css.css">
+</head>
+<style type="text/css">
+div {
+  width:980px;
+  margin:10px auto;
+  color:green;
+  font-family:weibei;
+}
+</style>
+<script type="text/javascript">
+var i=1;
+function write()
+{
+  var id=document.getElementById("main");
+  var msg="JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可JS打字机效果 ，原理很简单：每次多获取一个待打出的字符串的值，输出，覆盖原来输出的内容即可";
+  var len=msg.length;
+  var msg1=msg.substring(0,i);
+  id.innerHTML=msg1;
+  if(i==len){clearInterval(t)}
+  else
+    i++;
+}
+function time1()
+{
+  var t=setInterval(function(){write()},50);
+}
+</script>
+<body onload=time1()>
+<div id="main"></div>
+</body>
+</html>

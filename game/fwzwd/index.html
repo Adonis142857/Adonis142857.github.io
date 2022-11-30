@@ -1,0 +1,2766 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>反物质维度 - Antimatter Dimensions</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <meta name="Antimatter Dimensions" content="A game about huge numbers and watching them go up." charset="utf-8"/>
+    <h1 id="hiddenheader" style="display: none">反物质维度</h1>
+<!--    <script type="text/javascript" src='https://cdn1.kongregate.com/javascripts/kongregate_api.js'></script>-->
+    <script type="text/javascript" src="javascripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="javascripts/notify.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/styles.css?3">
+<!--
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-77268961-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+-->
+</head>
+<img id="loading" src="images/Loading.png">
+<div id="snow" style="display: none; "></div>
+<body id="body" style="height: 95vh; ">
+    <div id="container" class="container" style="color:#4F5957; font-family: Typewriter; text-align:center; font-size: 11px; display:none">
+        <div id='game'>
+            <div id='news'>.</div>
+        </div>
+        <div id="matter"></div>
+        <div style="position: relative"><div class="IP" id="infinityPoints2"></div></div>
+        <div style="position: relative"><div class="EP" id="eternityPoints2"></div></div>
+        <div>
+            <p>你拥有 <span id="coinAmount" style="font-size:25px; color: black">0</span> 反物质。</p>
+        </div>
+
+        <div style="position: relative">
+            <button id="postInfinityButton" class="postinfcrunch">Big Crunch for x Infinity Points</button>
+            <button id="newDimensionButton" class="newdim" onclick="newDimension()">Get x antimatter to unlock a new Dimension.</button>
+            <button id="eternitybtn" class="eternitybtn" onclick="eternity()">Other times await.. I need to become Eternal</button>
+        </div>
+        <div id="coinsPerSec">你每秒获得0反物质</div>
+
+        <tr id="tickSpeedRow" style="visibility: hidden">
+            <div id="tickLabel" style="visibility: hidden">游戏速度加快10%。</div>
+            <button id="tickSpeed" style="color:black; visibility: hidden; height: 25px;width: 170px; font-size: 12px" class="storebtn">成本: 1000</button>
+            <button id="tickSpeedMax" onclick="buyMaxTickSpeed()" style="color:black; visibility: hidden; height: 25px; font-size: 12px" class="storebtn">购买最大</button>
+            <div id="tickSpeedAmount" style="visibility: hidden">时刻间隔: 1000</div>
+        </tr>
+        <p></p>
+        <div style="position:absolute; left: 0; right: 0; margin-left: auto; margin-right: auto; width: 360px; top: 19px">
+            <button id="bigcrunch" style="font-family: Typewriter; font-size: 50px; width: 360px; height: 100px;" class="tabbtn">大坍缩</button>
+        </div>
+        <div>
+            <button id="dimensionsbtn" style="font-family: Typewriter; font-size: 20px" class="tabbtn">维度</button>
+            <button id="optionsbtn" style="font-family: Typewriter; font-size: 20px" class="tabbtn">选项</button>
+            <button id="statisticsbtn" style="font-family: Typewriter; font-size: 20px" class="tabbtn">统计</button>
+            <button id="achievementsbtn" style="font-family: Typewriter; font-size: 20px" class="tabbtn">成就</button>
+            <button id="challengesbtn" style="font-family: Typewriter; font-size: 20px" class="tabbtn">挑战</button>
+            <button id="infinitybtn" style="font-family: Typewriter; font-size: 20px; display: none" class="infinitybtn">无限</button>
+            <button id="eternitystorebtn" style="font-family: Typewriter; font-size: 20px; display: none" class="eternitytabbtn">永恒</button>
+            <button id="shopbtn" style="font-family: Typewriter; font-size: 20px" class="tabbtn">Shop</button>
+        </div>
+        <div id="emptiness" class="tab" style="font-size: 150%">
+            <br> 由于过量的反物质，世界已经崩溃了。
+            <br>
+            <br>
+        </div>
+        <div id="shop" class="tab" style="font-size: 15px" >
+            <div align="center">
+                <br>
+                <span id="kongip"> Double your IP gain from all sources. Forever. </span><br>
+                <button class="greedbtn" onclick="kong.purchaseIP()">40 Kreds</button>
+                <br><br><br>
+                <span id="kongep"> Double your EP gain from all sources. Forever. </span><br>
+                <button class="greedbtn" onclick="kong.purchaseEP()">50 Kreds</button>
+                <br><br><br>
+                <span id="kongdim"> Double all your dimension multipliers (dimensions 1-8). Forever. </span><br>
+                <button class="greedbtn" onclick="kong.purchaseDimMult()">30 Kreds</button>
+                <br><br><br>
+                <span id="kongalldim"> Double ALL the dimension multipliers (Normal, Infinity and Time). Forever. </span><br>
+                <button class="greedbtn" onclick="kong.purchaseAllDimMult()">60 Kreds</button>
+                <br><br><br>
+                <span>Get 6 hours worth of offline production. (Doesn't work for autobuyers)</span><br>
+                <button class="greedbtn" onclick="kong.purchaseTimeSkip()">10 Kreds</button>
+                <br><br><br>
+                <span style="font-size: 12px"><b>Disclaimer: These are not required to progress in the game, they are just to help and support the developer.</b></span>
+            </div>
+        </div>
+        <div id="eternitystore" class="tab" style="font-size: 15px; margin: 0 auto; display: none" align="center">
+            <table class="table" align="center" style="margin: auto">
+                <tr>
+                    <td><button class="secondarytabbtn" onclick="showEternityTab('timestudies')">时间研究</button></td>
+                    <td><button class="secondarytabbtn" onclick="showEternityTab('eternityupgrades')">永恒升级</button></td>
+                    <td><button class="secondarytabbtn" onclick="showEternityTab('milestones')">永恒里程碑</button></td>
+                    <td><button class="secondarytabbtn" onclick="showEternityTab('dilation')" id="dilationTabbtn">时间膨胀</button></td>
+                </tr>
+            </table>
+            <div class="eternitytab" id="timestudies" style="font-size: 15px">
+                <div style="display: none;"><textarea id="treeExportOutput" style="color:black; width: 200px; height: 55px;"></textarea></div>
+                <canvas id="studyTreeCanvas"></canvas>
+                <tr>
+                    <td><button class="storebtn" onclick="exportStudyTree()" style="width:150px; height: 40px; font-size: 10px; margin: auto">导出升级树</button><td>
+                    <td><button class="storebtn" onclick="respecToggle()" id="respec" style="width:150px; height: 40px; font-size: 10px; margin: auto">下一轮永恒重置时间研究</button><td>
+                    <td><button class="storebtn" onclick="importStudyTree()" style="width:150px; height: 40px; font-size: 10px; margin: auto">导入升级树</button><td>
+                </tr>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td style="opacity: 0;"><button class="timestudylocked"></button></td>
+                        <td><button class="timestudylocked" id="11" onclick="buyTimeStudy(11, 1)">减少时刻间隔对第一时间维度生效，但效果较弱。<span id="11desc">当前: 1x</span>成本: 1 时间定律</button></td>
+                        <td><button class="timestudybought" id="secretstudy" style="opacity: 0; cursor: pointer; transition-duration: 2s;">解锁一个隐藏成就<span>成本: 0 时间定律</button></td>
+                    </tr>
+                </table>
+                <br>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="21" onclick="buyTimeStudy(21, 3)">复制品增强无限维度的倍数公式变得更好 (log2(x)^2 -> x^0.032)<span>成本: 3 时间定律</button></td>
+                        <td><button class="timestudy" id="22" onclick="buyTimeStudy(22, 2)">复制品时间间隔限制 50ms -> 1ms<span>成本: 2 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="33" onclick="buyTimeStudy(33, 2)">到达无限后你能保留一半的复制品星系<span>成本: 2 时间定律</button></td>
+                        <td><button class="timestudy" id="31" onclick="buyTimeStudy(31, 3)">增加基于到达无限次数的奖励 (在原来基础上的4次方)<span>成本: 3 时间定律</button></td>
+                        <td><button class="timestudy" id="32" onclick="buyTimeStudy(32, 2)"><span id="32desc">You gain x1 more infinitied stat (based on dimension boosts)</span>成本: 2 时间定律</button></td>
+                        <td style="opacity: 0;"><button class="timestudylocked"></button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="41" onclick="buyTimeStudy(41, 4)">每个星系增加无限点数获取1.2x倍。 <span>成本: 4 时间定律</button></td>
+                        <td><button class="timestudy" id="42" onclick="buyTimeStudy(42, 6)">每次购买星系后，需求的第八维度增长值从60降为52。<span>成本: 6 时间定律</button></td>
+                    </tr>
+                </table>
+                <br>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td style="opacity: 0;"><button class="timestudylocked"></button></td>
+                        <td><button class="timestudy" id="51" onclick="buyTimeStudy(51, 3)"><span id=51desc>你获取的无限点数多 1e15 倍</span>成本: 3 时间定律</button></td>
+                        <td><button class="eternitychallengestudy" id="ec5unl">永恒挑战 5<span>需求: 200 星系<span>成本: 100 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td style="opacity: 0;"><button class="timestudylocked"></button></td>
+                        <td><button class="timestudy" id="61" onclick="buyTimeStudy(61, 3)">你获取永恒点数变为原来10倍<span>成本: 3 时间定律</button></td>
+                        <td><button class="timestudy" id="62" onclick="buyTimeStudy(62, 3)">你获取复制品的速度变为原来3倍<span>成本: 3 时间定律</button></td>
+                    </tr>
+                </table>
+                <br>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy normaldimstudy" id="71" onclick="buyTimeStudy(71, 4)">维度献祭对所有普通维度生效，不过对其他维度效果较弱<span id="71desc">当前: 1x</span>成本: 4 时间定律</button></td>
+                        <td><button class="timestudy infdimstudy" id="72" onclick="buyTimeStudy(72, 6)">维度献祭对第四无限维度生效，但是效果很大程度上削弱<span id="72desc">当前: 1x</span>成本: 6 时间定律</button></td>
+                        <td><button class="timestudy timedimstudy" id="73" onclick="buyTimeStudy(73, 5)">维度献祭对第三时间维度生效，但是效果很大程度上削弱<span id="73desc">当前: 1x</span>成本: 5 时间定律</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="timestudy normaldimstudy" id="81" onclick="buyTimeStudy(81, 4)">每次维度提升倍数增加10倍<span>成本: 4 时间定律</button></td>
+                        <td><button class="timestudy infdimstudy" id="82" onclick="buyTimeStudy(82, 6)">维度提升对无限维度生效<span id="82desc">当前: 1x</span>成本: 6 时间定律</button></td>
+                        <td><button class="timestudy timedimstudy" id="83" onclick="buyTimeStudy(83, 5)">从时间维度每获得一次时刻间隔减少升级，维度提升的效果增加0.04%<span>成本: 5 时间定律</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="timestudy normaldimstudy" id="91" onclick="buyTimeStudy(91, 4)">基于本次永恒花费的时间为普通维度提供一个倍数<span id="91desc">当前: 1x</span>成本: 4 时间定律</button></td>
+                        <td><button class="timestudy infdimstudy" id="92" onclick="buyTimeStudy(92, 5)">基于最快的永恒时间为无限维度提供一个倍数<span id="92desc">当前: 1x</span>成本: 5 时间定律</button></td>
+                        <td><button class="timestudy timedimstudy" id="93" onclick="buyTimeStudy(93, 7)">基于时间维度获取的减少时刻间隔升级次数为时间维度提供一个倍数<span id="93desc">当前: 1x</span>成本: 7 时间定律</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="timestudy normaldimstudy" id="101" onclick="buyTimeStudy(101, 4)">复制品使普通维度乘以与它们(复制品)数量相当的倍数<span>成本: 4 时间定律</button></td>
+                        <td><button class="timestudy infdimstudy" id="102" onclick="buyTimeStudy(102, 6)">复制品星系增强复制品提供的倍数<span>成本: 6 时间定律</button></td>
+                        <td><button class="timestudy timedimstudy" id="103" onclick="buyTimeStudy(103, 6)">时间维度获得与复制品星系数目相同的倍数<span>成本: 6 时间定律</p></button></td>
+                    </tr>
+                </table>
+                <br>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="eternitychallengestudy" id="ec7unl">Eternity Challenge 7<span>Requirement: 1e550,000 antimatter<span>成本: 115 时间定律</button></td>
+                        <td><button class="timestudy" id="111" onclick="buyTimeStudy(111, 12)">使获取无限点数的公式变得更好<span>成本: 12 时间定律</button></td>
+                        <td style="opacity: 0;"><button class="timestudylocked"></button></td>
+                    </tr>
+                </table>
+                <br>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy activestudy" id="121" onclick="buyTimeStudy(121, 9)">你的平均永恒点数/分钟越低，你获得的永恒点数越多<span id="121desc">当前: 1x</span>成本: 9 时间定律</button></td>
+                        <td><button class="timestudy passivestudy" id="122" onclick="buyTimeStudy(122, 9)">你的永恒点数获取变为原来的35倍<span>成本: 9 时间定律</button></td>
+                        <td><button class="timestudy idlestudy" id="123" onclick="buyTimeStudy(123, 9)">基于本次永恒消耗的时间获取更多的永恒点数<span id="123desc">当前: 1x</span>成本: 9 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="eternitychallengestudy" id="ec6unl">Eternity Challenge 6<span>Requirement: 40 replicanti galaxies<span>成本: 100 时间定律</button></td>
+                        <td><button class="timestudy activestudy" id="131" onclick="buyTimeStudy(131, 5)">禁用自动复制品星系,但是你可以多获取50%的复制星系<span>成本: 5 时间定律</button></td>
+                        <td><button class="timestudy passivestudy" id="132" onclick="buyTimeStudy(132, 5)">复制品星系效果增加40%<span>成本: 5 时间定律</button></td>
+                        <td><button class="timestudy idlestudy" id="133" onclick="buyTimeStudy(133, 5)">复制品增长速度变为1/10,但是复制品星系增强50%<span>成本: 5 时间定律</button></td>
+                        <td><button class="eternitychallengestudy" id="ec8unl">Eternity Challenge 8<span>成本: 100 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy activestudy" id="141" onclick="buyTimeStudy(141, 4)">给获取的无限点数一个倍数，在本次无限中逐渐衰减<span id="141desc">Currently 1x</span>成本: 4 时间定律</button></td>
+                        <td><button class="timestudy passivestudy" id="142" onclick="buyTimeStudy(142, 4)"><span id="142desc">你获取的无限点数增加1e25x倍</span>成本: 4 时间定律</button></td>
+                        <td><button class="timestudy idlestudy" id="143" onclick="buyTimeStudy(143, 4)">给获取的无限点数增加一个倍数，在本次无限中逐渐增加<span id="143desc">Currently 1x</span>成本: 4 时间定律</button></td>
+                    </tr>
+                </table>
+                <br>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td style="opacity: 0;"><button class="timestudylocked"></button></td>
+                        <td><button class="eternitychallengestudy" id="ec9unl">Eternity Challenge 9<span>Requirement: 1e6000 infinity power<span>成本: 100 时间定律</button></td>
+                        <td><button class="timestudy" id="151" onclick="buyTimeStudy(151, 8)"><span id="151desc">所有时间维度的倍数乘1e4 </span>成本: 8 时间定律</button></td>
+                        <td style="opacity: 0;"><button class="timestudylocked"></button></td>
+                        <td><button class="eternitychallengestudy" id="ec4unl">Eternity Challenge 4<span>Requirement: 100,000,000 infinities<span>成本: 85 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="161" onclick="buyTimeStudy(161, 7)"><span id="161desc">所有普通维度倍数乘以1e616</span>成本: 7 时间定律</button></td>
+                        <td><button class="timestudy" id="162" onclick="buyTimeStudy(162, 7)"><span id="162desc">所有无限维度倍数乘以1e11</span>成本: 7 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="171" onclick="buyTimeStudy(171, 15)">下一个减少时刻间隔升级所需的时间碎片，增长更加缓慢<span>成本: 15 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="eternitychallengestudy" id="ec1unl">Eternity Challenge 1<span>Requirement: 25,000 Eternities<span>成本: 20 时间定律</button></td>
+                        <td><button class="eternitychallengestudy" id="ec2unl" style="font-size: 10px;">Eternity Challenge 2<span>Requirement: 1,300 Time upgrades gained from time dimensions<span>成本: 25 时间定律</button></td>
+                        <td><button class="eternitychallengestudy" id="ec3unl">Eternity Challenge 3<span>Requirement: 30 dicks in your ass<span>成本: 30 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="181" onclick="buyTimeStudy(181, 200)">你每秒获得你本轮大坍缩后可获取无限点数的1%。<span>成本: 200 时间定律</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="eternitychallengestudy" id="ec10unl">Eternity Challenge 10<span>Requirement: 1e100 EP<span>成本: 200 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="191" onclick="buyTimeStudy(191, 400)">每次永恒后你将永久保留本轮永恒5%的无限次数<span>成本: 400 时间定律</button></td>
+                        <td><button class="timestudy" id="192" onclick="buyTimeStudy(192, 730)" style="font-size: 10px;"><span id="192desc">你可以拥有超过1.8e308的复制品，但是时间间隔增长</span>成本: 730 时间定律</button></td>
+                        <td><button class="timestudy" id="193" onclick="buyTimeStudy(193, 300)">基于永恒次数增强普通维度<span id="193desc">当前: 1x</span>成本: 300 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="201" onclick="buyTimeStudy(201, 900)">获取从第一次分支另一条路上的升级<span>成本: 900 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy" id="211" onclick="buyTimeStudy(211, 120)">维度提升每次需求的增加值减少5<span>成本: 120 时间定律</button></td>
+                        <td><button class="timestudy" id="212" onclick="buyTimeStudy(212, 150)">基于你的时间碎片，你的星系效果更强<span id="212desc">当前: 1x</span>成本: 150 时间定律</button></td>
+                        <td><button class="timestudy" id="213" onclick="buyTimeStudy(213, 200)">你获取复制品的速度变为原来的20倍Y<span>成本: 200 时间定律</button></td>
+                        <td><button class="timestudy" id="214" onclick="buyTimeStudy(214, 120)">维度献祭增强第八维度的效果进一步提升<span id="214desc">当前: 1x</span>成本: 120 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr class="wideRow">
+                        <td><button class="timestudy darkstudy" style="margin: 1px; width: 120px; font-size: 0.55rem; padding: 3px;" id="221" onclick="buyTimeStudy(221, 900)">维度提升对时间维度产生较弱的效果。<span>成本: 900 时间定律</button></td>
+                        <td><button class="timestudy lightstudy" style="margin: 1px; width: 120px; font-size: 0.55rem; padding: 3px;" id="222" onclick="buyTimeStudy(222, 900)">维度提升每次需求的增加值再减2.<span>成本: 900 时间定律</button></td>
+                        <td><button class="timestudy darkstudy" style="margin: 1px; width: 120px; font-size: 0.55rem; padding: 3px;" id="223" onclick="buyTimeStudy(223, 900)">从拥有7个星系往后星系价格开始提升。<span>成本: 900 时间定律</button></td>
+                        <td><button class="timestudy lightstudy" style="margin: 1px; width: 120px; font-size: 0.55rem; padding: 3px;" id="224" onclick="buyTimeStudy(224, 900)">每拥有2000维度提升，星系的价格提升就向后计算一个星系。<span>成本: 900 时间定律</button></td>
+                        <td><button class="timestudy darkstudy" style="margin: 1px; width: 120px; font-size: 0.55rem; padding: 3px;" id="225" onclick="buyTimeStudy(225, 900)">基于你的复制品超出无限的数量获取额外复制星系。<span>成本: 900 时间定律</button></td>
+                        <td><button class="timestudy lightstudy" style="margin: 1px; width: 120px; font-size: 0.55rem; padding: 3px;" id="226" onclick="buyTimeStudy(226, 900)">基于你复制星系的最大值获取额外复制星系。<span>成本: 900 时间定律</button></td>
+                        <td><button class="timestudy darkstudy" style="margin: 1px; width: 120px; font-size: 0.55rem; padding: 3px;" id="227" onclick="buyTimeStudy(227, 900)">维度献祭对第四时间维度产生较弱的作用。<span>成本: 900 时间定律</button></td>
+                        <td><button class="timestudy lightstudy" style="margin: 1px; width: 120px; font-size: 0.55rem; padding: 3px;" id="228" onclick="buyTimeStudy(228, 900)">维度献祭的效果更好。<span>成本: 900 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudy darkstudy" id="231" onclick="buyTimeStudy(231, 500)">基于维度提升的次数，维度提升效果更好。<span>成本: 500 时间定律</button></td>
+                        <td><button class="timestudy lightstudy" id="232" onclick="buyTimeStudy(232, 500)">基于非复制星系的数量，星系效果更好。<span>成本: 500 时间定律</button></td>
+                        <td><button class="timestudy darkstudy" id="233" onclick="buyTimeStudy(233, 500)">基于复制品的数量，最大复制品星系升级的价格减少。<span>成本: 500 时间定律</button></td>
+                        <td><button class="timestudy lightstudy" id="234" onclick="buyTimeStudy(234, 500)">维度献祭增强第一维度。<span>成本: 500 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="eternitychallengestudy" id="ec11unl">Eternity Challenge 11<span>Requirement: Use only the Normal Dimension path<span>成本: 1 Time Theorem</button></td>
+                        <td><button class="eternitychallengestudy" id="ec12unl">Eternity Challenge 12<span>Requirement: Use only the Infinity Dimension path<span>成本: 1 Time Theorem</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudylocked" id="dilstudy1" onclick="buyDilationStudy(1, 5000)">解锁时间膨胀<span>Requirement: 5 Eternity Challenge 11 and 12 completions<span>成本: 5000 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudylocked" id="dilstudy2" onclick="buyDilationStudy(2, 1000000)">解锁第五时间维度<span>成本: 1,000,000 时间定律</button></td>
+                        <td><button class="timestudylocked" id="dilstudy3" onclick="buyDilationStudy(3, 1e7)">解锁第六时间维度<span>成本: 10,000,000 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudylocked" id="dilstudy4" onclick="buyDilationStudy(4, 1e8)">解锁第七时间维度<span>成本: 100,000,000 时间定律</button></td>
+                        <td><button class="timestudylocked" id="dilstudy5" onclick="buyDilationStudy(5, 1e9)">解锁第八时间维度<span>成本: 1,000,000,000 时间定律</button></td>
+                    </tr>
+                </table>
+                <table class="table" id="studytable">
+                    <tr>
+                        <td><button class="timestudylocked" id="dilstudy6">未完待续...</button></td>
+                    </tr>
+                </table>
+                <div style="height: 60px;"></div>
+                <div>
+                    <table id="footer">
+                        <tr>
+                            <td>
+                                <div style="text-align:center">
+                                    <a href="howto.html" target="_newtab">游戏指南  </a> |
+                                    <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                    <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                    <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                    <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div  class="eternitytab" id="eternityupgrades">
+                <br>
+                <table class="table" style="margin: 0 auto">
+                    <tr>
+                        <td>
+                            <button id="eter1" class="eternityupbtn" onclick="buyEternityUpgrade(1, 5)">Infinity Dimensions multiplier equal to unspent EP to the power of 5.<br>当前: x<br>成本: 5 EP</button>
+                        </td>
+                        <td>
+                            <button id="eter2" class="eternityupbtn" onclick="buyEternityUpgrade(2, 10)">You gain Infinity Dimension multiplier based on eternities (x^log4(2x))<br>当前: x<br>成本: 10 EP</button>
+                        </td>
+                        <td>
+                            <button id="eter3" class="eternityupbtn" onclick="buyEternityUpgrade(3, 50e3)">Infinity Dimensions multiplier based on sum of Infinity Challenge times<br>当前: Xx<br>成本: 50 K EP</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="eter4" class="eternityupbtn" onclick="buyEternityUpgrade(4, 1e16)">Your achievement bonus affects Time Dimensions<br>成本: 1e16 EP</button>
+                        </td>
+                        <td>
+                            <button id="eter5" class="eternityupbtn" onclick="buyEternityUpgrade(5, 1e40)">Time Dimensions are multiplied by your unspent time theorems<br>成本: 1e40 EP</button>
+                        </td>
+                        <td>
+                            <button id="eter6" class="eternityupbtn" onclick="buyEternityUpgrade(6, 1e50)">Time Dimensions are multiplied by days played<br>成本: 1e50 EP</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="eternityupbtnbought" style="opacity: 0"></div>
+                        </td>
+                        <td>
+                            <button id="epmult" class="eternityupbtn" onclick="buyEPMult()">You gain 5 times more EP<p>成本: 500 EP</button>
+                        </td>
+                        <td>
+                            <div class="eternityupbtnbought" style="opacity: 0"></div>
+                        </td>
+                    </tr>
+                </table>
+                <div><button class="storebtn" onclick="buyMaxEPMult()" style="height: 25px; width: 190px; font-size:10px; margin-top: -3px;">购买最大永恒点数倍数</button></div>
+                <div id="footercontainer">
+                    <table id="footer">
+                        <tr>
+                            <td>
+                                <div style="text-align:center">
+                                    <a href="howto.html" target="_newtab">游戏指南  </a> |
+                                    <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                    <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                    <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                    <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="eternitytab" id="milestones">
+                <table class="table" align="center" style="margin: auto" id="milestones">
+                    <tr>
+                        <td class="milestoneText">1次永恒:</td>
+                        <td class="milestoneText">2次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward0">解锁无限点数翻倍自动购买</button></td>
+                        <td><button class="milestonerewardlocked" id="reward1">永恒后保留自动购买</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">3次永恒:</td>
+                        <td class="milestoneText">4次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward2">解锁自动购买复制品星系</button></td>
+                        <td><button class="milestonerewardlocked" id="reward3">永恒后保留无限升级Y</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">5次永恒:</td>
+                        <td class="milestoneText">7次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward4" style="font-size: 12px">解锁更多自动大坍缩的设置</button></td>
+                        <td><button class="milestonerewardlocked" id="reward5" style="font-size: 10px">当你解锁无限挑战时立刻完成(你立即获取自动维度献祭)</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">9次永恒:</td>
+                        <td class="milestoneText">10次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward6">解锁自动购买最大星系</button></td>
+                        <td><button class="milestonerewardlocked" id="reward7">解锁自动购买最大维度提升</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">11次永恒:</td>
+                        <td class="milestoneText">12次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward8">解锁第一无限维度自动购买</button></td>
+                        <td><button class="milestonerewardlocked" id="reward9">解锁第二无限维度自动购买</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">13次永恒:</td>
+                        <td class="milestoneText">14次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward10">解锁第三无限维度自动购买</button></td>
+                        <td><button class="milestonerewardlocked" id="reward11">解锁第四无限维度自动购买</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">15次永恒:</td>
+                        <td class="milestoneText">16次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward12">解锁第五无限维度自动购买</button></td>
+                        <td><button class="milestonerewardlocked" id="reward13">解锁第六无限维度自动购买</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">17次永恒:</td>
+                        <td class="milestoneText">18次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward14">解锁第七无限维度自动购买</button></td>
+                        <td><button class="milestonerewardlocked" id="reward15">解锁第八无限维度自动购买</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">20次永恒:</td>
+                        <td class="milestoneText">25次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward16">永恒后保留突破无限升级</button></td>
+                        <td><button class="milestonerewardlocked" id="reward17">当你可获得新无限维度时，自动解锁它们</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">30次永恒:</td>
+                        <td class="milestoneText">40次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward18">从所有能购买的普通维度开始</button></td>
+                        <td><button class="milestonerewardlocked" id="reward19">解锁复制品复制概率自动升级</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">50次永恒:</td>
+                        <td class="milestoneText">60次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward20">开局就解锁复制品</button></td>
+                        <td><button class="milestonerewardlocked" id="reward21">解锁复制品时间间隔自动升级</button></td>
+                    </tr>
+                    <tr>
+                        <td class="milestoneText">80次永恒:</td>
+                        <td class="milestoneText">100次永恒:</td>
+                    </tr>
+                    <tr>
+                        <td><button class="milestonerewardlocked" id="reward22">解锁复制品最大星系自动升级</button></td>
+                        <td><button class="milestonerewardlocked" id="reward23">解锁自动永恒</button></td>
+                    </tr>
+                </table>
+                <div>
+                    <table id="footer">
+                        <tr>
+                            <td>
+                                <div style="text-align:center">
+                                    <a href="howto.html" target="_newtab">游戏指南  </a> |
+                                    <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                    <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                    <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                    <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="eternitytab" id="dilation" style="font-size: 11px">
+                <canvas id="dilationCanvas"></canvas>
+                <div>
+                    <p>你拥有 <span id="tachyonParticleAmount" style="font-size:35px; color: black">0</span> 超光速粒子.</p>
+                </div>
+                <button id="enabledilation" class="dilationbtn" onclick="startDilatedEternity()">膨胀时间.</button>
+                <p>你拥有 <span id="dilatedTimeAmount" style="font-size:35px; color: black">0</span> 膨胀时间 <span id="dilatedTimePerSecond" style="font-size:25px; color: black">0</span></p>
+                <p>下一个免费星系在 <span id="galaxyThreshold" style="font-size:25px; color: black">1000</span> 膨胀时间, 总共已获取 <span id="dilatedGalaxies" style="font-size:25px; color: black">0</span></p>
+                <table>
+                    <tr>
+                        <td>
+                            <button class="timestudy" id="dil1" onclick="buyDilationUpgrade(1)">膨胀时间获得翻倍。<br><span id="dil1cost">成本: 1e5 膨胀时间</span></button>
+                        </td>
+                        <td>
+                            <button class="timestudy" id="dil2" onclick="buyDilationUpgrade(2)">降低免费星系的膨胀时间需求值，但重置免费星系和膨胀时间<br><span id="dil2cost">成本: 1e6 膨胀时间</span></button>
+                        </td>
+                        <td>
+                            <button class="timestudy" id="dil3" onclick="buyDilationUpgrade(3)">超光速粒子获取变为三倍。<br><span id="dil3cost">成本: 1e7 膨胀时间</span></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="timestudy" id="dil4" onclick="buyDilationUpgrade(4)">免费星系的获取翻倍。<br><span id="dil4cost">成本: 5e6 膨胀时间</span></button>
+                        </td>
+                        <td>
+                            <button class="timestudy" id="dil5" onclick="buyDilationUpgrade(5)">时间维度受到复制品倍数0.1次方的影响。<br><span id="dil5cost">成本: 1e9 膨胀时间</span></button>
+                        </td>
+                        <td>
+                            <button class="timestudy" id="dil6" onclick="buyDilationUpgrade(6)">普通维度基于膨胀时间的数值获得一个倍数，这个倍数不受时间膨胀影响。<br><span id="dil6cost">成本: 5e7 膨胀时间</span></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="timestudy" id="dil7" onclick="buyDilationUpgrade(7)">无限点数基于膨胀时间的数值获取一个倍数。<br><span id="dil7desc"></span><br><span id="dil7cost"></span></button>
+                        </td>
+                        <td>
+                            <button class="timestudy" id="dil8" onclick="buyDilationUpgrade(8)">时间研究的第一条分叉中选择所有研究路径。<br><span id="dil8cost"></span></button>
+                        </td>
+                        <td>
+                            <button class="timestudy" id="dil9" onclick="buyDilationUpgrade(9)">减少时间膨胀的惩罚效果。 (减少后将变为1.05次方)<br><span id="dil9cost"></span></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="timestudybought" style="opacity: 0;"></button>
+                        </td>
+                        <td>
+                            <button class="timestudy" id="dil10" onclick="buyDilationUpgrade(10)">基于你拥有的超光速粒子数生产时间定律。<br><span id="dil10desc"></span><br><span id="dil10cost"></span></button>
+                        </td>
+                        <td>
+                            <button class="timestudybought" style="opacity: 0;"></button>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <table id="footer">
+                        <tr>
+                            <td>
+                                <div style="text-align:center">
+                                    <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                    <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                    <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                    <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                    <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复<br><br></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="dimensions" class="tab">
+            <table class="table" align="center" style="margin: auto" id="dimTabButtons">
+                <tr>
+                    <td id="dtabbtn"><button class="secondarytabbtn" onclick="showDimTab('antimatterdimensions')">维度</button></td>
+                    <td id="idtabbtn"><button class="secondarytabbtn" onclick="showDimTab('infinitydimensions')">无限维度</button></td>
+                    <td id="tdtabbtn"><button class="secondarytabbtn" onclick="showDimTab('timedimensions')">时间维度</button></td>
+                    <td id="prodtabbtn"><button class="secondarytabbtn" onclick="showDimTab('production')">生产图表</button></td>
+                </tr>
+            </table>
+            <div id="antimatterdimensions" class="dimtab">
+                <p></p>
+                <input id="confirmation" type="checkbox" style="width:20px; height: 18px; display: none" ach-tooltip="当维度献祭时没有提示" onchange="sacrificeConf()">
+                <button id="sacrifice" class="storebtn" style="font-size:12px; width: 320px; display: none" ach-tooltip="">Dimensional Sacrifice</button>
+                <button id="maxall" class="storebtn" style="font-size: 12px">全部最大 (M)</Button>
+                <span id="chall2Pow"></span>
+                <span id="chall3Pow"></span>
+                <table class="table" >
+                <tbody id="parent">
+                    <tr style="font-size: 15px" id="firstRow">
+                        <td id="firstD" width="32%" class="rel">
+                            第一维度 x1
+                        </td>
+                        <td>
+                            <div id="firstAmount">0 (0)</div>
+                        </td>
+                        <td align="right" width="10%">
+                            <button id="first" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right">成本: 10</button>
+                        </td>
+                        <td align="right" width="10%">
+                            <button id="firstMax" style="color:black; width:210px; height: 25px; font-size: 10px" class="storebtn" align="right">成本: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="secondRow" style="display: none; font-size: 15px">
+                        <td id="secondD" class="rel">
+                            第二维度
+                        </td>
+                        <td>
+                            <div id="secondAmount" align="left">0 (0)</div>
+                        </td>
+                        <td><button id="second" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn">成本: 100</button>
+                        </td>
+                        <td>
+                            <button id="secondMax" style="color:black; width:210px; height: 25px; font-size: 10px" class="storebtn">成本: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="thirdRow" style="display: none; font-size: 15px">
+                        <td id="thirdD" class="rel">
+                            第三维度
+                        </td>
+                        <td>
+                            <div id="thirdAmount" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="third" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn">Cost: 10000</button>
+                        </td>
+                        <td>
+                            <button id="thirdMax" style="color:black; width:210px; height: 25px; font-size: 10px" class="storebtn">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="fourthRow" style="display: none; font-size: 15px">
+                        <td id="fourthD" class="rel">
+                            第四维度
+                        </td>
+                        <td>
+                            <div id="fourthAmount" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="fourth" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn">Cost: 1000000</button>
+                        </td>
+                        <td>
+                            <button id="fourthMax" style="color:black; width:210px; height: 25px; font-size: 10px" class="storebtn">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="fifthRow" style="display: none; font-size: 15px">
+                        <td id="fifthD" class="rel">
+                            Fifth Dimension
+                        </td>
+                        <td>
+                            <div id="fifthAmount" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="fifth" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn">Cost: 1000000</button>
+                        </td>
+                        <td>
+                            <button id="fifthMax" style="color:black; width:210px; height: 25px; font-size: 10px" class="storebtn">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="sixthRow" style="display: none; font-size: 15px">
+                        <td id="sixthD" class="rel">
+                            Sixth Dimension
+                        </td>
+                        <td>
+                            <div id="sixthAmount" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="sixth" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn">Cost: 1000000</button>
+                        </td>
+                        <td>
+                            <button id="sixthMax" style="color:black; width:210px; height: 25px; font-size: 10px" class="storebtn">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="seventhRow" style="display: none; font-size: 15px">
+                        <td id="seventhD" class="rel">
+                            Seventh Dimension
+                        </td>
+                        <td>
+                            <div id="seventhAmount" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="seventh" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn">Cost: 1000000</button>
+                        </td>
+                        <td>
+                            <button id="seventhMax" style="color:black; width:210px; height: 25px; font-size: 10px" class="storebtn">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="eightRow" style="display: none; font-size: 15px">
+                        <td id="eightD" class="rel">
+                            Eight Dimension
+                        </td>
+                        <td>
+                            <div id="eightAmount" align="left">0 (0)</div>
+                        </td>
+                        <td>
+
+                            <button id="eight" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn">Cost: 1000000</button>
+                        </td>
+                        <td>
+                            <button id="eightMax" style="color:black; width:210px; height: 25px; font-size: 10px" class="storebtn">Cost: 10</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table style="width: 100%">
+                    <tr style="font-size: 15px">
+                        <td id="resetLabel">
+                            Dimension Shift: requires 20 Fourth Dimension
+                        </td>
+                        <td>
+                            <button id="softReset" style="color:black; width: 200px; height: 25px; font-size: 9px" class="storebtn">重置游戏进入新的维度</button>
+                        </td>
+                    </tr>
+                    <tr style="font-size: 15px">
+                        <td id="secondResetLabel">
+                            Antimatter Galaxies: requires 80 Eight Dimension
+                        </td>
+                        <td>
+                            <button id="secondSoftReset" style="color:black; width: 200px; height: 35px; font-size: 9px" class="storebtn">失去之前所有的游戏进度，但得到每轮速度的提升</button>
+                        </td>
+                    </tr>
+                </table>
+                <button id="quickReset" style="color:black; width: 200px; height: 50px; font-size: 12px; display: none" class="storebtn">丢失一个重置，返回到重置开始</button>
+            </div>
+            <div id="infinitydimensions" class="dimtab">
+                <span id="EC12Pow"></span>
+                <div>
+                    <p>你拥有 <span id="infPowAmount" style="font-size:35px; color: black">0</span> 无限力量。 转换过来就是给每个维度乘以 <span id="infDimMultAmount" style="font-size:35px; color: black">0</span>x 倍数</p>
+                </div>
+                <div id="infPowPerSec">You are getting 0 antimatter per second.</div>
+                <table class="table" >
+                    <tr style="font-size: 16px" id="infRow1">
+                        <td id="infD1" width="41%">
+                            First Infinity Dimension x1
+                        </td>
+                        <td>
+                            <div id="infAmount1">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="infauto1" style="width:70px; font-size: 10px; float: right; visibility: hidden" onclick="switchAutoInf(1)" class="storebtn">自动购买: 开</button>
+                        </td>
+                        <td align="right" width="10%">
+                            <button id="infMax1" style="color:black; width:195px; height:30px" class="storebtn" align="right" onclick="buyManyInfinityDimension(1)">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="infRow2" style="display: none; font-size: 16px">
+                        <td id="infD2">
+                            Second Infinity Dimension x1
+                        </td>
+                        <td>
+                            <div id="infAmount2" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="infauto2" style="width:70px; font-size: 10px; float: right; visibility: hidden" onclick="switchAutoInf(2)" class="storebtn">自动购买: 开</button>
+                        </td>
+                        <td>
+                            <button id="infMax2" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyManyInfinityDimension(2)">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="infRow3" style="display: none; font-size: 16px">
+                        <td id="infD3">
+                            Third Infinity Dimension x1
+                        </td>
+                        <td>
+                            <div id="infAmount3" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="infauto3" style="width:70px; font-size: 10px; float: right; visibility: hidden" onclick="switchAutoInf(3)" class="storebtn">自动购买: 开</button>
+                        </td>
+                        <td>
+                            <button id="infMax3" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyManyInfinityDimension(3)">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="infRow4" style="display: none; font-size: 16px">
+                        <td id="infD4">
+                            Fourth Infinity Dimension x1
+                        </td>
+                        <td>
+                            <div id="infAmount4" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="infauto4" style="width:70px; font-size: 10px; float: right; visibility: hidden" onclick="switchAutoInf(4)" class="storebtn">自动购买: 开</button>
+                        </td>
+                        <td>
+                            <button id="infMax4" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyManyInfinityDimension(4)">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="infRow5" style="display: none; font-size: 16px">
+                        <td id="infD5">
+                            Fourth Infinity Dimension x1
+                        </td>
+                        <td>
+                            <div id="infAmount5" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="infauto5" style="width:70px; font-size: 10px; float: right; visibility: hidden" onclick="switchAutoInf(5)" class="storebtn">自动购买: 开</button>
+                        </td>
+                        <td>
+                            <button id="infMax5" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyManyInfinityDimension(5)">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="infRow6" style="display: none; font-size: 16px">
+                        <td id="infD6">
+                            Fourth Infinity Dimension x1
+                        </td>
+                        <td>
+                            <div id="infAmount6" align="left">0 (0)</div>
+                        </td>
+                        <td>
+                            <button id="infauto6" style="width:70px; font-size: 10px; float: right; visibility: hidden" onclick="switchAutoInf(6)" class="storebtn">自动购买: 开</button>
+                        </td>
+                        <td>
+                            <button id="infMax6" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyManyInfinityDimension(6)">Cost: 10</button>
+                        </td>
+                    </tr>
+                    <tr id="infRow7" style="display: none; font-size: 16px">
+                            <td id="infD7">
+                                Fourth Infinity Dimension x1
+                            </td>
+                            <td>
+                                <div id="infAmount7" align="left">0 (0)</div>
+                            </td>
+                            <td>
+                                <button id="infauto7" style="width:70px; font-size: 10px; float: right; visibility: hidden" onclick="switchAutoInf(7)" class="storebtn">自动购买: 开</button>
+                            </td>
+                            <td>
+                                <button id="infMax7" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyManyInfinityDimension(7)">Cost: 10</button>
+                            </td>
+                        </tr>
+                        <tr id="infRow8" style="display: none; font-size: 16px">
+                                <td id="infD8">
+                                    Fourth Infinity Dimension x1
+                                </td>
+                                <td>
+                                    <div id="infAmount8" align="left">0 (0)</div>
+                                </td>
+                                <td>
+                                    <button id="infauto8" style="width:70px; font-size: 10px; float: right; visibility: hidden" onclick="switchAutoInf(8)" class="storebtn">自动购买: 开</button>
+                                </td>
+                                <td>
+                                    <button id="infMax8" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyManyInfinityDimension(8)">Cost: 10</button>
+                                </td>
+                            </tr>
+                </table>
+                <div id="eterc8ids" style="display: none;"></div>
+                <button id="toggleallinfdims"style="width:140px; height: 30px; font-size: 12px; visibility: hidden" onclick="toggleAllInfDims()" class="storebtn">全部切换 开/关</button>
+            </div>
+            <div id="timedimensions" class="dimtab">
+                    <div>
+                        <p id="totaltickgained">You've gained 0 tickspeed upgrades.</p>
+                            <p>你拥有 <span id="timeShardAmount" style="font-size:35px; color: black">0</span> 时间碎片。 下一次时刻间隔减少升级在 <span id="tickThreshold" style="font-size:35px; color: black">0</span></p>
+                        </div>
+
+                        <div id="timeShardsPerSec">You are getting 0 Timeshards per second.</div>
+                        <button id="maxTimeDimensions" class="storebtn" style="font-size: 12px" onclick="buyMaxTimeDimensions()">全部最大</Button>
+                        <table class="table" >
+                            <tr style="font-size: 17px" id="timeRow1">
+                                <td id="timeD1" width="43%">
+                                    First Time Dimension x1
+                                </td>
+                                <td>
+                                    <div id="timeAmount1">0 (0)</div>
+                                </td>
+                                <td align="right" width="10%">
+                                    <button id="timeMax1" style="color:black; width:195px; height:30px" class="storebtn" align="right" onclick="buyTimeDimension(1)">Cost: 10</button>
+                                </td>
+                            </tr>
+                            <tr id="timeRow2" style="font-size: 17px">
+                                <td id="timeD2">
+                                    Second Time Dimension x1
+                                </td>
+                                <td>
+                                    <div id="timeAmount2" align="left">0 (0)</div>
+                                <td>
+                                    <button id="timeMax2" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyTimeDimension(2)">Cost: 10</button>
+                                </td>
+                            </tr>
+                            <tr id="timeRow3" style="font-size: 17px">
+                                <td id="timeD3">
+                                    Third Time Dimension x1
+                                </td>
+                                <td>
+                                    <div id="timeAmount3" align="left">0 (0)</div>
+                                </td>
+                                <td>
+                                    <button id="timeMax3" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyTimeDimension(3)">Cost: 10</button>
+                                </td>
+                            </tr>
+                            <tr id="timeRow4" style="font-size: 17px">
+                                <td id="timeD4">
+                                    Fourth Time Dimension x1
+                                </td>
+                                <td>
+                                    <div id="timeAmount4" align="left">0 (0)</div>
+                                </td>
+                                <td>
+                                    <button id="timeMax4" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyTimeDimension(4)">Cost: 10</button>
+                                </td>
+                            </tr>
+                            <tr id="timeRow5" style="font-size: 17px">
+                                <td id="timeD5">
+                                    Fifth Time Dimension x1
+                                </td>
+                                <td>
+                                    <div id="timeAmount5" align="left">0 (0)</div>
+                                </td>
+                                <td>
+                                    <button id="timeMax5" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyTimeDimension(5)">Cost: 10</button>
+                                </td>
+                            </tr>
+                            <tr id="timeRow6" style="font-size: 17px">
+                                <td id="timeD6">
+                                    Sixth Time Dimension x1
+                                </td>
+                                <td>
+                                    <div id="timeAmount6" align="left">0 (0)</div>
+                                </td>
+                                <td>
+                                    <button id="timeMax6" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyTimeDimension(6)">Cost: 10</button>
+                                </td>
+                            </tr>
+                            <tr id="timeRow7" style="font-size: 17px">
+                                <td id="timeD7">
+                                    Seventh Time Dimension x1
+                                </td>
+                                <td>
+                                    <div id="timeAmount7" align="left">0 (0)</div>
+                                </td>
+                                <td>
+                                    <button id="timeMax7" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyTimeDimension(7)">Cost: 10</button>
+                                </td>
+                            </tr>
+                            <tr id="timeRow8" style="font-size: 17px">
+                                <td id="timeD8">
+                                    Eighth Time Dimension x1
+                                </td>
+                                <td>
+                                    <div id="timeAmount8" align="left">0 (0)</div>
+                                </td>
+                                <td>
+                                    <button id="timeMax8" style="color:black; width:195px; height:30px" class="storebtn" onclick="buyTimeDimension(8)">Cost: 10</button>
+                                </td>
+                            </tr>
+                        </table>
+            </div>
+            <div id="production" class="dimtab">
+                <b>图表记录秒数:</b>
+                <input type="number" value="10" onchange="updateChartValues()" id="chartDurationInput"></input>
+                <b>刷新速率 (单位 ms):</b>
+                <input type="number" value="1000" onchange="updateChartValues()" id="chartUpdateRateInput"></input>
+                <b>开启:</b>
+                <input id="chartOnOff" type="checkbox" onchange="enableChart()"></input>
+                <b>dips:</b>
+                <input id="chartDipsOnOff" type="checkbox" onchange="enableChartDips()"></input>
+                <canvas id="normalDimChart" width="1500" height="500" style="user-select: none;"></canvas>
+                <b>每秒反物质的指数</b>
+            </div>
+            <div id="footercontainer">
+
+                <table id="footer">
+                    <tr>
+                        <td>
+                            <div style="text-align:center">
+                                <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="options" class="tab" align="center">
+            <br>
+            <table>
+                <tr>
+                    <td><div><button id="theme" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 20px">当前主题: 默认</button></div></td>
+                    <td><div><button id="notation" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%">数据格式: 标准</button></div></td>
+                    <td><div><button id="newsbtn" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%">隐藏/显示新闻</button></div></td>
+                </tr>
+                <tr>
+					<td><div><button id="retry" onclick="toggleChallengeRetry()" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%">Automatically retry challenges</button></div></td>
+                    <td><div><button id="exportbtn" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 20px">导出</button></div></td>
+                    <td><div><button id="importbtn" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 20px">导入</button></div></td>
+                </tr>
+                <tr>
+                    <td><div><button id="challengeconfirmation" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 15px">挑战确认开启</button></div></td>
+					<td><div><button id="save" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 20px">保存</button></div></td>
+					<td><div><button id="load" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 20px">加载</button></div></td>
+                </tr>
+                <tr id="cloudOptions">
+                    <td><div><button onclick="playFabSaveCheck()" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%">保存云存档</button></div></td>
+                    <td><div><button onclick="playFabLoadCheck()" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%">加载云存档</button></div></td>
+                    <td><div><button id="cloud" onclick="toggleCloud()" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%">切换自动云存储和加载</button></div></td>
+                </tr>
+                <tr>
+                    <td><div><button id="hotkeys" onclick="toggleHotkeys()" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%">禁用快捷键</button></div></td>
+					<td><div><button id="reset" class="storebtn" style="color:black; width: 200px; height: 55px; font-size: 20px">重置游戏</button></div></td>
+                    <td><div><button id="commas" onclick="toggleCommas()" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%">Commas on large exponents ON</button></div></td>
+                </tr>
+                <tr>
+					<td><div><button id="eternityconf" onclick="toggleEternityConf()" class="storebtn" style="color:black; width: 200px; height: 55px; font-size:120%; display: none">Eternity confirmation ON</button></div></td>
+                    <td><div class="storebtn" style="color:black; width: 198px; height: 55px; font-size:130%; text-align: center;"><b id="updaterate">刷新频率: 50ms</b><input id="updaterateslider" style="width: 170px;" type="range" min="33" max="200" value="50" class="slider" ></div></td>
+                    <td><div><button id="animationoptionsbtn" class="storebtn" style="width: 200px; height: 55px; font-size:160%;">动画</button></div></td>
+                </tr>
+                <tr>
+
+
+                </tr>
+
+
+
+            </table>
+            <div style="display: none;"><textarea id="exportOutput" style="color:black; width: 200px; height: 55px;"></textarea></div>
+            <p>快捷键: 1-8 用于购买10次维度, shift+1-8 用于购买1次维度, T 用于购买最大减少时刻间隔, shift+T 用于购买1次减少时刻间隔, M 用来设置全部最大<br>S 用于牺牲, D 用于维度提升, G 用于星系, C for crunch, A 切换自动购买者, R 用于复制星系, E 用于永生.<br>你可以按住shift，同时购买时间研究来购买所有直到那一点，看到每个研究的数字，并保存学习树。<br>按着Ctrl键时，热键将不起作用。</p>
+            <div id="footercontainer">
+                <table id="footer">
+                    <tr>
+                        <td>
+                            <div style="text-align:center">
+                                <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="statistics" class="tab" align="center" style="color: black; font-size: 12px; font-family: Typewriter; margin: 0 auto">
+            <br>
+            <tr>
+                <td><button class="secondarytabbtn" onclick="showStatsTab('stats')">统计</button><td>
+                <td><button class="secondarytabbtn" onclick="showStatsTab('challengetimes')" id="challengetimesbtn" style="display:none" >挑战纪录</button><td>
+                <td><button class="secondarytabbtn" onclick="showStatsTab('infchallengetimes')" id="infchallengesbtn" style="display:none">无限挑战记录</button><td>
+                <td><button class="secondarytabbtn" onclick="showStatsTab('lasttenruns')" id="pastinfs" style="display:none">过去的无限</button><td>
+                <td><button class="secondarytabbtn" onclick="showStatsTab('lastteneternities')" id="pasteternities" >过去的永恒</button><td>
+            </tr>
+            <div id="stats" class="statstab">
+                <br>
+                <div id="totalmoney">You have made x antimatter.</div>
+                <div id="totalresets">You have made x dimensional boosts/shifts.</div>
+                <div id="galaxies">You have made x Antimatter galaxies.</div>
+                <br>
+                <div id="eternitied">You have eternitied x times.</div>
+                <div id="thiseternity">You have spent x in this eternity</div>
+                <div id="besteternity">Your fastest eternity is in x.</div>
+                <br>
+                <div id="infinitied">You have infinitied x times.</div>
+                <div id="infinitiedBank">You have infinitied x times.</div>
+                <div id="bestInfinity">Your fastest infinity is in x.</div>
+                <div id="thisInfinity">You have spent x in this Infinity.</div>
+                <br>
+                <div id="totalTime">You have played for </div>
+                <div id="infoScale">If every antimatter were a planck volume, you would have enough to </div>
+            </div>
+            <div id="challengetimes" class="statstab" >
+                <br>
+                <div id="challengetime2"></div>
+                <div id="challengetime3"></div>
+                <div id="challengetime4"></div>
+                <div id="challengetime5"></div>
+                <div id="challengetime6"></div>
+                <div id="challengetime7"></div>
+                <div id="challengetime8"></div>
+                <div id="challengetime9"></div>
+                <div id="challengetime10"></div>
+                <div id="challengetime11"></div>
+                <div id="challengetime12"></div>
+                <br>
+                <div id="challengetimesum"></div>
+            </div>
+            <div id="infchallengetimes" class="statstab" >
+                <br>
+                <div id="infchallengetime1"></div>
+                <div id="infchallengetime2"></div>
+                <div id="infchallengetime3"></div>
+                <div id="infchallengetime4"></div>
+                <div id="infchallengetime5"></div>
+                <div id="infchallengetime6"></div>
+                <div id="infchallengetime7"></div>
+                <div id="infchallengetime8"></div>
+                <br>
+                <div id="infchallengetimesum"></div>
+            </div>
+            <div id="lasttenruns" class="statstab">
+                <div id="run1"></div>
+                <div id="run2"></div>
+                <div id="run3"></div>
+                <div id="run4"></div>
+                <div id="run5"></div>
+                <div id="run6"></div>
+                <div id="run7"></div>
+                <div id="run8"></div>
+                <div id="run9"></div>
+                <div id="run10"></div>
+                <br>
+                <div id="averagerun"></div>
+                <br>
+            </div>
+            <div id="lastteneternities" class="statstab">
+                <div id="eternityrun1"></div>
+                <div id="eternityrun2"></div>
+                <div id="eternityrun3"></div>
+                <div id="eternityrun4"></div>
+                <div id="eternityrun5"></div>
+                <div id="eternityrun6"></div>
+                <div id="eternityrun7"></div>
+                <div id="eternityrun8"></div>
+                <div id="eternityrun9"></div>
+                <div id="eternityrun10"></div>
+                <br>
+                <div id="averageEternityRun"></div>
+                <br>
+            </div>
+            <div id="footercontainer">
+                <table id="footer">
+                    <tr>
+                        <td>
+                            <div style="text-align:center">
+                                <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="achievements" class="tab">
+            <table class="table" align="center" style="margin: auto" id="achTabButtons">
+                <tr>
+                    <td><button class="secondarytabbtn" onclick="showAchTab('normalachievements')">成就</button></td>
+                    <td><button class="secondarytabbtn" onclick="showAchTab('secretachievements')">隐藏成就</button></td>
+                </tr>
+            </table>
+            <div id="normalachievements" class="achtab">
+                <div id="achmultlabel" style="font-size: 140%">当前成就在每个维度的加成倍数: 1x</div>
+                <table id="achievementtable" style="margin: auto">
+                    <tr id="achRow1">
+                        <td>
+                            <div id="You gotta start somewhere" class="achievement achievementlocked" style="background-image: url(images/1.png)" ach-tooltip="购买一个第一维度。"><br></div>
+                        </td>
+                        <td>
+                            <div id="100 antimatter is a lot" class="achievement achievementlocked" style="background-image: url(images/2.png)" ach-tooltip="购买一个第二维度。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Half life 3 confirmed" class="achievement achievementlocked" style="background-image: url(images/3.png)" ach-tooltip="购买一个第三维度。"><br></div>
+                        </td>
+                        <td>
+                            <div id="L4D: Left 4 Dimensions" class="achievement achievementlocked" style="background-image: url(images/4.png)" ach-tooltip="购买一个第四维度。"><br></div>
+                        </td>
+                        <td>
+                            <div id="5 Dimension Antimatter Punch" class="achievement achievementlocked" style="background-image: url(images/5.png)" ach-tooltip="购买一个第五维度。"><br></div>
+                        </td>
+                        <td>
+                            <div id="We couldn't afford 9" class="achievement achievementlocked" style="background-image: url(images/6.png)" ach-tooltip="购买一个第六维度。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Not a luck related achievement" class="achievement achievementlocked" style="background-image: url(images/7.png)" ach-tooltip="购买一个第七维度。"><br></div>
+                        </td>
+                        <td>
+                            <div id="90 degrees to infinity" class="achievement achievementlocked" style="background-image: url(images/8.png)" ach-tooltip="购买一个第八维度。"><br></div>
+                        </td>
+                    </tr>
+                    <tr id="achRow2">
+                        <td>
+                            <div id="To infinity!" class="achievement achievementlocked" style="background-image: url(images/9.png)" ach-tooltip="达到无限的反物质。奖励:从100个反物质开始。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Fake News" class="achievement achievementlocked" style="background-image: url(images/25.png)" ach-tooltip="遇到50种不同的新闻信息。"><br></div>
+                        </td>
+                        <td>
+                            <div id="The 9th Dimension is a lie" class="achievement achievementlocked" style="background-image: url(images/11.png)" ach-tooltip="有99个第八维度。奖励:第8维度增强10%。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Antimatter Apocalypse" class="achievement achievementlocked" style="background-image: url(images/12.png)" ach-tooltip="获得超过10 QtVg (10e79)反物质。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Boosting to the max" class="achievement achievementlocked" style="background-image: url(images/13.png)" ach-tooltip="购买10次维度提升。"><br></div>
+                        </td>
+                        <td>
+                            <div id="You got past The Big Wall" class="achievement achievementlocked" style="background-image: url(images/14.png)" ach-tooltip="购买一个反物质星系。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Double Galaxy" class="achievement achievementlocked" style="background-image: url(images/15.png)" ach-tooltip="购买2个反物质星系"><br></div>
+                        </td>
+                        <td>
+                            <div id="There's no point in doing that" class="achievement achievementlocked" style="background-image: url(images/16.png)" ach-tooltip="当你拥有超过1e150第一维度时再买一个。 奖励: 第一维度加强10%。"><br></div>
+                        </td>
+                    </tr>
+                    <tr id="achRow3">
+                        <td>
+                            <div id="I forgot to nerf that" class="achievement achievementlocked" style="background-image: url(images/17.png)" ach-tooltip="任意维度加成超过10 No (10e30)。奖励:第一个维度增强5%。"><br></div>
+                        </td>
+                        <td>
+                            <div id="The Gods are pleased" class="achievement achievementlocked" style="background-image: url(images/18.png)" ach-tooltip="从维度献祭中总共得到600x以上。奖励:献祭效果稍微强一点。"><br></div>
+                        </td>
+                        <td>
+                            <div id="That's a lot of infinites" class="achievement achievementlocked" style="background-image: url(images/19.png)" ach-tooltip="达到无限10次。"><br></div>
+                        </td>
+                        <td>
+                            <div id="You didn't need it anyway" class="achievement achievementlocked" style="background-image: url(images/20.png)" ach-tooltip="在没有任何8维的情况下达到无限反物质。奖励:维度1-7比原来强2%。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Don't you dare to sleep" class="achievement achievementlocked" style="background-image: url(images/10.png)" ach-tooltip="连续6个小时离线。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Claustrophobic" class="achievement achievementlocked" style="background-image: url(images/22.png)" ach-tooltip="在只有一个反物质星系的情况下达到无限。奖励:减少初始时的时刻间隔2%。"><br></div>
+                        </td>
+                        <td>
+                            <div id="That's fast!" class="achievement achievementlocked" style="background-image: url(images/23.png)" ach-tooltip="两小时内就能达到无限。奖励:开局就有1000个反物质。"><br></div>
+                        </td>
+                        <td>
+                            <div id="I don't believe in Gods" class="achievement achievementlocked" style="background-image: url(images/24.png)" ach-tooltip="购买一个星系而未献祭过。"><br></div>
+                        </td>
+                    </tr>
+                    <tr id="achRow4">
+                        <td>
+                            <div id="Spreading Cancer" class="achievement achievementlocked" style="background-image: url(images/46.png)" ach-tooltip="使用cancer数字格式的情况下总共购买10个星系。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Supersanic" class="achievement achievementlocked" style="background-image: url(images/26.png)" ach-tooltip="Have antimatter/sec exceed your current antimatter above 1 Tg (1e63)."><br></div>
+                        </td>
+                        <td>
+                            <div id="Zero Deaths" class="achievement achievementlocked" style="background-image: url(images/27.png)" ach-tooltip="在一个挑战中不购买维度转换、维度提升以及星系到达无限。 奖励: 维度1-4增强25%。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Over in 30 seconds" class="achievement achievementlocked" style="background-image: url(images/28.png)" ach-tooltip="每秒反物质持续超过你拥有反物质30秒。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Faster than a potato" class="achievement achievementlocked" style="background-image: url(images/29.png)" ach-tooltip="Get more than 100 Sx (100e21) ticks per second. Reward: Reduces starting tick interval by 2%."><br></div>
+                        </td>
+                        <td>
+                            <div id="Multidimensional" class="achievement achievementlocked" style="background-image: url(images/30.png)" ach-tooltip="所有维度数量到达1e12，除了第8维度。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Daredevil" class="achievement achievementlocked" style="background-image: url(images/31.png)" ach-tooltip="完成2个挑战。"><br></div>
+                        </td>
+                        <td>
+                            <div id="AntiChallenged" class="achievement achievementlocked" style="background-image: url(images/32.png)" ach-tooltip="完成所有挑战。 奖励：所有维度都增强10％。"><br></div>
+                        </td>
+                    </tr>
+                    <tr id="achRow5">
+                        <td>
+                            <div id="Limit Break" class="achievement achievementlocked" style="background-image: url(images/33.png)" ach-tooltip="突破无限。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Age of Automation" class="achievement achievementlocked" style="background-image: url(images/34.png)" ach-tooltip="任意9个自动购买升级到速度最快。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Definitely not worth it" class="achievement achievementlocked" style="background-image: url(images/35.png)" ach-tooltip="所有的自动购买升级到速度最快。"><br></div>
+                        </td>
+                        <td>
+                            <div id="That's faster!" class="achievement achievementlocked" style="background-image: url(images/36.png)" ach-tooltip="无限在10分钟或更短时间内。 奖励：从200000反物质开始。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Forever isn't that long" class="achievement achievementlocked" style="background-image: url(images/37.png)" ach-tooltip="无限在1分钟或更短时间内。 奖励：从1e10反物质开始。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Many Deaths" class="achievement achievementlocked" style="background-image: url(images/38.png)" ach-tooltip="在3分钟内完成第二维度自动购买的挑战。 奖励: 每一轮的前3分钟所有维度加强。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Gift from the Gods" class="achievement achievementlocked" style="background-image: url(images/39.png)" ach-tooltip="在3分钟内完成第八维度自动购买的挑战。 奖励: 维度献祭效果大幅提高。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Is this hell?" class="achievement achievementlocked" style="background-image: url(images/40.png)" ach-tooltip="在3分钟内完成自动购买时间间隔的挑战。 奖励: 每买10维度的加成增加1%。"><br></div>
+                        </td>
+                    </tr>
+                    <tr id="achRow6">
+                        <td>
+                            <div id="Bulked up" class="achievement achievementlocked" style="background-image: url(images/401.png)" ach-tooltip="所有维度的批量自动购买到512或以上。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Oh hey, you're still here" class="achievement achievementlocked" style="background-image: url(images/402.png)" ach-tooltip="达到每分钟1e8无限点数。"><br></div>
+                        </td>
+                        <td>
+                            <div id="A new beginning." class="achievement achievementlocked" style="background-image: url(images/403.png)" ach-tooltip="开始生产无限力量。"><br></div>
+                        </td>
+                        <td>
+                            <div id="1 million is a lot" class="achievement achievementlocked" style="background-image: url(images/404.png)" ach-tooltip="拥有 1e6 无限力量。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Not-so-challenging" class="achievement achievementlocked" style="background-image: url(images/405.png)" ach-tooltip="所有挑战的时间总和小于3分钟。奖励：每次无限的前三分钟所有维度增强，但只在挑战中生效。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Faster than a squared potato" class="achievement achievementlocked" style="background-image: url(images/406.png)" ach-tooltip="Reach 1e52 ticks per second. Reward: -2% tickspeed."><br></div>
+                        </td>
+                        <td>
+                            <div id="Infinitely Challenging" class="achievement achievementlocked" style="background-image: url(images/407.png)" ach-tooltip="完成一个无限挑战。"><br></div>
+                        </td>
+                        <td>
+                            <div id="You did this again just for the achievement right?" class="achievement achievementlocked" style="background-image: url(images/408.png)" ach-tooltip="十秒内完成第三维度自动购买的挑战。奖励：第一维度增强50%。"><br></div>
+                        </td>
+                    </tr>
+                    <tr id="achRow7">
+                            <td>
+                                <div id="ERROR 909: Dimension not found" class="achievement achievementlocked" style="background-image: url(images/41.png)" ach-tooltip="在自动购买星系的挑战下，不维度转换、维度提升、购买星系，只有一个第一维度的情况下到达无限。奖励：第一维度增强3倍。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Can't hold all these infinities" class="achievement achievementlocked" style="background-image: url(images/42.png)" ach-tooltip="所有维度的倍数超过 1e308。 奖励：所有维度增强10%。"><br></div>
+                            </td>
+                            <td>
+                                <div id="This achievement doesn't exist" class="achievement achievementlocked" style="background-image: url(images/43.png)" ach-tooltip="拥有 9.9999e9999 反物质。 奖励: 你拥有的反物质越多，所有维度就越强。"><br></div>
+                            </td>
+                            <td>
+                                <div id="End me" class="achievement achievementlocked" style="background-image: url(images/44.png)" ach-tooltip="所有挑战最佳纪录时间总和小于5秒。 奖励：所有维度增强40%，只在挑战中生效。"><br></div>
+                            </td>
+                            <td>
+                                <div id="NEW DIMENSIONS???" class="achievement achievementlocked" style="background-image: url(images/45.png)" ach-tooltip="解锁第四无限维度。 奖励：你的成就加成同样适用于无限维度。 "><br></div>
+                            </td>
+                            <td>
+                                <div id="One for each dimension" class="achievement achievementlocked" style="background-image: url(images/21.png)" ach-tooltip="玩8天。 奖励: 极小的时间倍数加成。"><br></div>
+                            </td>
+                            <td>
+                                <div id="How the antitables have turned" class="achievement achievementlocked" style="background-image: url(images/47.png)" ach-tooltip="第八维度的倍数最高，第七维度其次，按此向下排到第一维度最低。 奖励：每个维度获得与阶数成比例的加成(第八维度获得8%，第七维度获得7%……向下排。) "><br></div>
+                            </td>
+                            <td>
+                                <div id="Blink of an eye" class="achievement achievementlocked" style="background-image: url(images/48.gif)" ach-tooltip="Get to Infinity in under 200 milliseconds. Reward: Start with 1e25 antimatter and all dimensions are stronger in first 300ms of infinity."><br></div>
+                            </td>
+                        </tr>
+                        <tr id="achRow8">
+                            <td>
+                                <div id="Hevipelle did nothing wrong" class="achievement achievementlocked" style="background-image: url(images/49.png)" ach-tooltip="10秒内完成无限挑战5。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Anti-antichallenged" class="achievement achievementlocked" style="background-image: url(images/50.png)" ach-tooltip="完成8个无限挑战。"><br></div>
+                            </td>
+                            <td>
+                                <div id="YOU CAN GET 50 GALAXIES!??" class="achievement achievementlocked" style="background-image: url(images/51.png)" ach-tooltip="拥有50个星系。 奖励：每个星系降低5%的时刻间隔。"><br></div>
+                            </td>
+                            <td>
+                                <div id="I got a few to spare" class="achievement achievementlocked" style="background-image: url(images/52.png)" ach-tooltip="Reach 1e35000 antimatter. Reward: Dimensions are more powerful the more unspent antimatter you have."><br></div>
+                            </td>
+                            <td>
+                                <div id="All your IP are belong to us" class="achievement achievementlocked" style="background-image: url(images/53.png)" ach-tooltip="Big Crunch for 1e150 IP. Reward: Additional 4x multiplier to IP."><br></div>
+                            </td>
+                            <td>
+                                <div id="Do you even bend time bro?" class="achievement achievementlocked" style="background-image: url(images/54.png)" ach-tooltip="每次升级将-99.9%的时刻间隔。奖励：星系加强1%。"><br></div>
+                            </td>
+                            <td>
+                                <div id="2 Million Infinities" class="achievement achievementlocked" style="background-image: url(images/55.png)" ach-tooltip="到达无限 2000000 次。 奖励：一轮超过5秒将获得250无限次数。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Yet another infinity reference" class="achievement achievementlocked" style="background-image: url(images/56.png)" ach-tooltip="Get xInfinity multiplier in a single sacrifice. Reward: Sacrifices are stronger."><br></div>
+                            </td>
+                        </tr>
+                        <tr id="achRow9">
+                            <td>
+                                <div id="Ludicrous Speed" class="achievement achievementlocked" style="background-image: url(images/57.png)" ach-tooltip="Big Crunch for 1e200 IP in 2 seconds or less. Reward: All dimensions are significantly stronger in first 5 seconds of infinity."><br></div>
+                            </td>
+                            <td>
+                                <div id="I brake for nobody" class="achievement achievementlocked" style="background-image: url(images/58.png)" ach-tooltip="Big Crunch for 1e250 IP in 20 seconds or less. Reward: All dimensions are significantly stronger in first 60 seconds of infinity."><br></div>
+                            </td>
+                            <td>
+                                <div id="MAXIMUM OVERDRIVE" class="achievement achievementlocked" style="background-image: url(images/59.png)" ach-tooltip="Reach 1e300 IP/min. Reward: Additional 4x multiplier to IP."><br></div>
+                            </td>
+                            <td>
+                                <div id="Minute of infinity" class="achievement achievementlocked" style="background-image: url(images/60.png)" ach-tooltip="Reach 1e260 infinity power. Reward: Double infinity power gain."><br></div>
+                            </td>
+                            <td>
+                                <div id="Is this safe?" class="achievement achievementlocked" style="background-image: url(images/61.png)" ach-tooltip="30分钟内获取复制品星系。 奖励：到达无限不重置你的复制品数量。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Time is relative" class="achievement achievementlocked" style="background-image: url(images/62.png)" ach-tooltip="到达永恒。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Yes. This is hell." class="achievement achievementlocked" style="background-image: url(images/63.png)" ach-tooltip="所有无限挑战的时间总和小于6.66秒。"><br></div>
+                            </td>
+                            <td>
+                                <div id="0 degrees from infinity" class="achievement achievementlocked" style="background-image: url(images/64.png)" ach-tooltip="解锁第八无限维度。"><br></div>
+                            </td>
+                        </tr>
+                        <tr id="achRow10">
+                            <td>
+                                <div id="Costco sells dimboosts now" class="achievement achievementlocked" style="background-image: url(images/65.png)" ach-tooltip="一次批量购买750维度提升。 奖励：维度提升增强1%(对普通维度有效)。"><br></div>
+                            </td>
+                            <td>
+                                <div id="This mile took an Eternity" class="achievement achievementlocked" style="background-image: url(images/66.png)" ach-tooltip="获得所有永恒里程碑。"><br></div>
+                            </td>
+                            <td>
+                                <div id="This achievement doesn't exist II" class="achievement achievementlocked" style="background-image: url(images/67.png)" ach-tooltip="拥有 9.99999e999 无限点数。 奖励：基于你坍缩时的反物质数量获取更多无限点数。"><br></div>
+                            </td>
+                            <td>
+                                <div id="That wasn't an eternity" class="achievement achievementlocked" style="background-image: url(images/68.png)" ach-tooltip="30秒内到达永恒。奖励：每次永恒开始时拥有2e25无限点数。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Infinite time" class="achievement achievementlocked" style="background-image: url(images/69.png)" ach-tooltip="从时间维度中获取308减少时刻间隔升级(在一次永恒中) 奖励：时间维度受时刻间隔减少的影响略微增加。"><br></div>
+                            </td>
+                            <td>
+                                <div id="The swarm" class="achievement achievementlocked" style="background-image: url(images/70.png)" ach-tooltip="15秒内获得10个复制品星系。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Do you really need a guide for this?" class="achievement achievementlocked" style="background-image: url(images/71.png)" ach-tooltip="在无限次数10以下到达永恒。"><br></div>
+                            </td>
+                            <td>
+                                <div id="We could afford 9" class="achievement achievementlocked" style="background-image: url(images/72.png)" ach-tooltip="拥有准确9个复制品时到达永恒。"><br></div>
+                            </td>
+                        </tr>
+                        <tr id="achRow11">
+                            <td>
+                                <div id="Yo dawg, I heard you liked infinities..." class="achievement achievementlocked" style="background-image: url(images/73.png)" ach-tooltip="你过去的10次无限，每一个都比前一次获得无限点数高1.79e308倍。 奖励：维度提升以及购买星系反物质不会重置"><br></div>
+                            </td>
+                            <td>
+                                <div id="Never again" class="achievement achievementlocked" style="background-image: url(images/74.png)" ach-tooltip="第三无限升级的加成达到最高值 奖励: 加成限制略微提高。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Long lasting relationship" class="achievement achievementlocked" style="background-image: url(images/75.png)" ach-tooltip="在一次无限中你的每秒无限力量连续60秒超过无限力量。"><br></div>
+                            </td>
+                            <td>
+                                <div id="You're a mistake" class="achievement achievementlocked" style="background-image: url(images/76.png)" ach-tooltip="在一次永恒挑战中失败。 奖励：你的成就感逐渐减退。"><br></div>
+                            </td>
+                            <td>
+                                <div id="I wish I had gotten 7 eternities" class="achievement achievementlocked" style="background-image: url(images/77.png)" ach-tooltip="在永恒挑战中开始一个无限挑战。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Do I really need to infinity" class="achievement achievementlocked" style="background-image: url(images/78.png)" ach-tooltip="只到达一次无限便到达永恒。 奖励：基于无限次数给无限点数倍数。"><br></div>
+                            </td>
+                            <td>
+                                <div id="8 nobody got time for that" class="achievement achievementlocked" style="background-image: url(images/79.png)" ach-tooltip="不购买维度1-7到达永恒。"><br></div>
+                            </td>
+                            <td>
+                                <div id="IT'S OVER 9000" class="achievement achievementlocked" style="background-image: url(images/80.png)" ach-tooltip="获得1e9000的维度献祭倍数。 奖励：维度献祭不会重置你的维度数量。"><br></div>
+                            </td>
+                        </tr>
+                        <tr id="achRow12">
+                            <td>
+                                <div id="Can you get infinite IP?" class="achievement achievementlocked" style="background-image: url(images/81.png)" ach-tooltip="拥有 1e30008 无限点数。"><br></div>
+                            </td>
+                            <td>
+                                <div id="You're already dead." class="achievement achievementlocked" style="background-image: url(images/82.png)" ach-tooltip="不购买维度2-8到达永恒。"><br></div>
+                            </td>
+                            <td>
+                                <div id="5 more eternities until the update" class="achievement achievementlocked" style="background-image: url(images/83.png)" ach-tooltip="总共完成50次永恒挑战"><br></div>
+                            </td>
+                            <td>
+                                <div id="Eternities are the new infinity" class="achievement achievementlocked" style="background-image: url(images/84.png)" ach-tooltip="在 200ms 内到达永恒。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Like feasting on a behind" class="achievement achievementlocked" style="background-image: url(images/85.png)" ach-tooltip="Get 1e100 IP without any infinities, dimensions, or resets (not including upgrades). Reward: IP multiplier based on time spent this infinity."><br></div>
+                            </td>
+                            <td>
+                                <div id="Popular music" class="achievement achievementlocked" style="background-image: url(images/86.png)" ach-tooltip="Have 180 times more non-bonus replicanti galaxies than normal galaxies. Reward: Replicanti galaxies divide your replicanti by 1.79e308 instead of resetting them to 1."><br></div>
+                            </td>
+                            <td>
+                                <div id="But I wanted another prestige layer..." class="achievement achievementlocked" style="background-image: url(images/87.png)" ach-tooltip="拥有 1e308 永恒点数。"><br></div>
+                            </td>
+                            <td>
+                                <div id="What do I have to do to get rid of you" class="achievement achievementlocked" style="background-image: url(images/88.png)" ach-tooltip="没有时间研究的情况下拥有1e22000无限点数。 奖励: 时间维度的倍数乘以你拥有的时间研究数目。"><br></div>
+                            </td>
+                        </tr>
+                        <tr id="achRow13">
+                            <td>
+                                <div id="No ethical consumption" class="achievement achievementlocked" style="background-image: url(images/89.png)" ach-tooltip="获取 5 billion 的储存无限次数。 奖励：每次永恒后你永久保留5%的无限次数。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Unique snowflakes" class="achievement achievementlocked" style="background-image: url(images/90.png)" ach-tooltip="拥有540星系，且没有复制品星系。"><br></div>
+                            </td>
+                            <td>
+                                <div id="I never liked this infinity stuff anyway" class="achievement achievementlocked" style="background-image: url(images/91.png)" ach-tooltip="Reach 1e140,000 IP without buying IDs or IP multipliers."><br></div>
+                            </td>
+                            <td>
+                                <div id="When will it be enough?" class="achievement achievementlocked" style="background-image: url(images/92.png)" ach-tooltip="Reach 1e20,000 replicanti. Reward: You gain replicanti 2 times faster under 1.79e308 replicanti."><br></div>
+                            </td>
+                            <td>
+                                <div id="Faster than a potato^286078" class="achievement achievementlocked" style="background-image: url(images/93.png)" ach-tooltip="Get more than 1e8,296,262 ticks per second."><br></div>
+                            </td>
+                            <td>
+                                <div id="I told you already, time is relative" class="achievement achievementlocked" style="background-image: url(images/94.png)" ach-tooltip="时间膨胀。"><br></div>
+                            </td>
+                            <td>
+                                <div id="Now you're thinking with dilation!" class="achievement achievementlocked" style="background-image: url(images/95.png)" ach-tooltip="Eternity for 1e600 EP in 1 minute or less while dilated."><br></div>
+                            </td>
+                            <td>
+                                <div id="This is what I have to do to get rid of you." class="achievement achievementlocked" style="background-image: url(images/96.png)" ach-tooltip="Reach 1e20000 IP without any time studies while dilated."><br></div>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+            <div id="secretachievements" class="achtab" style="display:none;">
+                <table id="secretachievementtable" style="margin: auto">
+                    <tr id="secretAchRow1">
+                        <td>
+                            <div id="The first one's always free" class="achievement achievementlocked" style="background-image: url(images/s1.png)" ach-tooltip="第一次往往是免费的。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Just in case" class="achievement achievementlocked" style="background-image: url(images/s2.png)" ach-tooltip="以防万一。"><br></div>
+                        </td>
+                        <td>
+                            <div id="It pays to have respect" class="achievement achievementlocked" style="background-image: url(images/s3.png)" ach-tooltip="尊重别人是有好处的。"><br></div>
+                        </td>
+                        <td>
+                            <div id="So do I" class="achievement achievementlocked" style="background-image: url(images/s4.png)" ach-tooltip="我也一样。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Do a barrel roll!" class="achievement achievementlocked" style="background-image: url(images/s5.png)" ach-tooltip="做一个桶滚!"><br></div>
+                        </td>
+                        <td>
+                            <div id="Do you enjoy pain?" class="achievement achievementlocked" style="background-image: url(images/s6.png)" ach-tooltip="你喜欢疼痛吗?"><br></div>
+                        </td>
+                        <td>
+                            <div id="30 Lives" class="achievement achievementlocked" style="background-image: url(images/s7.png)" ach-tooltip="30岁的生活。"><br></div>
+                        </td>
+                        <td>
+                            <div id="Do you feel lucky? Well do ya punk?" class="achievement achievementlocked" style="background-image: url(images/s8.png)" ach-tooltip="你觉得自己很幸运吗?你朋克吗?"><br></div>
+                        </td>
+                    </tr>
+                    <tr id="secretAchRow2">
+                        <td>
+                            <div id="Go study in real life instead" class="achievement achievementlocked" style="background-image: url(images/s9.png)" ach-tooltip="Go study in real life instead."><br></div>
+                        </td>
+                        <td>
+                            <div id="Cancer = Spread" class="achievement achievementlocked" style="background-image: url(images/s10.png)" ach-tooltip="Cancer = Spread."><br></div>
+                        </td>
+                        <td>
+                            <div id="Stop right there criminal scum!" class="achievement achievementlocked" style="background-image: url(images/s11.png)" ach-tooltip="Stop right there criminal scum!"><br></div>
+                        </td>
+                        <td>
+                            <div id="Real news" class="achievement achievementlocked" style="background-image: url(images/s12.png)" ach-tooltip="Real news."><br></div>
+                        </td>
+                        <td>
+                            <div id="Shhh... It's a secret" class="achievement achievementlocked" style="background-image: url(images/s13.png)" ach-tooltip="Shhh... It's a secret."><br></div>
+                        </td>
+                        <td>
+                            <div id="You're a failure" class="achievement achievementlocked" style="background-image: url(images/s14.png)" ach-tooltip="You're a failure."><br></div>
+                        </td>
+                        <td>
+                            <div id="It's not called matter dimensions is it?" class="achievement achievementlocked" style="background-image: url(images/s15.png)" ach-tooltip="It's not called matter dimensions is it?"><br></div>
+                        </td>
+                        <td>
+                            <div id="Nice." class="achievement achievementlocked" style="background-image: url(images/s16.png)" ach-tooltip="Nice."><br></div>
+                        </td>
+                    </tr>
+                    <tr id="secretAchRow3">
+                        <td>
+                            <div id="You should download some more RAM" class="achievement achievementlocked" style="background-image: url(images/s17.png)" ach-tooltip="You should download some more RAM."><br></div>
+                        </td>
+                        <td>
+                            <div id="Less than or equal to 0.001" class="achievement achievementlocked" style="background-image: url(images/s18.png)" ach-tooltip="Less than or equal to 0.001."><br></div>
+                        </td>
+                        <td>
+                            <div id="A sound financial decision" class="achievement achievementlocked" style="background-image: url(images/s19.png)" ach-tooltip="A sound financial decision."><br></div>
+                        </td>
+                        <td>
+                            <div id="You do know how these work, right?" class="achievement achievementlocked" style="background-image: url(images/s20.png)" ach-tooltip="You do know how these work, right?"><br></div>
+                        </td>
+                        <td>
+                            <div id="Should we tell them about buy max..." class="achievement achievementlocked" style="background-image: url(images/s21.png)" ach-tooltip="Should we tell them about buy max..."><br></div>
+                        </td>
+                        <td>
+                            <div id="While you were away... Nothing happened." class="achievement achievementlocked" style="background-image: url(images/s22.png)" ach-tooltip="While you were away... Nothing happened."><br></div>
+                        </td>
+                        <td>
+                            <div id="You followed the instructions" class="achievement achievementlocked" style="background-image: url(images/s23.png)" ach-tooltip="You followed the instructions."><br></div>
+                        </td>
+                        <td>
+                            <div id="Professional bodybuilder" class="achievement achievementlocked" style="background-image: url(images/s24.png)" ach-tooltip="Professional bodybuilder."><br></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table id="footer">
+                    <tr>
+                        <td>
+                            <div style="text-align:center">
+                                <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div id="challenges" class="tab">
+            <br>
+            <button class="storebtn" style="font-size: 100%; width:200px" onclick="exitChallenge()">退出挑战</button><br><br>
+            <table class="table" align="center" style="margin: auto; display: none" id="challTabButtons">
+                <tr>
+                    <td><button class="secondarytabbtn" onclick="showChallengesTab('challenges')">挑战</button></td>
+                    <td><button class="secondarytabbtn" onclick="showChallengesTab('breakchallenges')">无限挑战</button></td>
+                    <td><button id="eterctabbtn" class="secondarytabbtn" onclick="showChallengesTab('eternitychallenges')">永恒挑战</button></td>
+                </tr>
+            </table>
+            <div id="nextchall"></div>
+            <div id="challenges" class="challengeTab">
+                <table class="table" style="margin: 0 auto">
+                    <tr>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">首次到达无限。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="challenge1" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 第一维度自动购买</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">购买任何东西都会使生产停止，然后在3分钟内逐渐恢复。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge2" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 第二维度自动购买</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">第一维度被严重削弱，但是会获得一个随时间指数型增长的加成，游戏重置后也重置。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge3" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 第三维度自动购买</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">购买一个维度会自动删除所有较低层次的维度，类似没有提升的维度献祭。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge8" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 第四维度自动购买</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">开始时，时刻间隔减少为7%。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge6" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 第五维度自动购买</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">每个维度都要花费低2阶的维度，并修改了价格。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge10" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 第六维度自动购买</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">每买10次维度的倍数加成在0.3~10之间取随机值。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge9" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 第七维度自动购买</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">维度提升以及星系没有作用，维度献祭将重置一切，但加成变得非常大。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge11" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 第八维度自动购买</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">只要你购买10次维度或是时刻间隔，其他花费相同的升级项的价格将会跳跃到下一次升级的价格。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge5" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 自动升级时间间隔</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">只有六个维度，并对维度提升以及反物质星系的价格进行调整。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge4" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 自动维度提升</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">正物质在不断增长。如果它超过了你的反物质，将会维度提升，但不产生任何加成。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge12" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 自动购买星系</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class= "challengediv">
+                                <span style="font-size: 110%">每个维度都会生产低两阶的维度；第一维度生产反物质。</span>
+                                <br>
+                                <br>
+
+                                <div class="outer">
+
+                                    <button id="challenge7" class="challengesbtn">开始</button>
+                                    <br>
+                                    <span>奖励: 自动大坍缩</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="breakchallenges" class="challengeTab">
+                <table  class="table" style="margin: 0 auto">
+                    <tr>
+                        <td>
+                            <div class="infchallengediv" id="postc1div" style="height: 140px; display: none">
+                                <span>所有之前的挑战(除了自动升级时间间隔挑战以及自动大坍缩挑战)条件同时具备</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="postc1" class="challengesbtn" onclick="startChallenge('postc1', new Decimal('1e850'))">开始</button>
+                                    <br>
+                                    <span id="postc1goal" >目标: 1e850</span><br>
+                                    <span>奖励: 每完成一个无限挑战，所有无限维度倍数乘1.3x</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="infchallengediv" id="postc2div" style="height: 140px; display: none">
+                                <span>一旦你拥有第八维度，每8个时刻自动献祭一次。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="postc2" class="challengesbtn" onclick="startChallenge('postc2', new Decimal('1e10500'))">开始</button>
+                                    <br>
+                                    <span id="postc2goal" >目标: 1e10500</span><br>
+                                    <span>奖励: 自动维度献祭、维度献祭效果更强。</span>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="infchallengediv" id="postc3div" style="height: 140px; display: none">
+                                <span>减少时刻间隔总是0%，但是每次购买减少时间间隔，所有维度都会获取一个倍数。(随着星系数量上涨)</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="postc3" class="challengesbtn" onclick="startChallenge('postc3', new Decimal('1e5000'))">开始</button>
+                                    <br>
+                                    <span id="postc3goal" >目标: 1e5000</span><br>
+                                    <span>奖励: 每次购买减少时间间隔给予倍数</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="infchallengediv" id="postc4div" style="height: 140px; display: none">
+                                <span>只有最后购买的维度生产正常，其他维度生产减少。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="postc4" class="challengesbtn" onclick="startChallenge('postc4', new Decimal('1e13000'))">开始</button>
+                                    <br>
+                                    <span id="postc4goal" >目标: 1e13000</span><br>
+                                    <span>奖励: 所有普通维度的倍数变为倍数^1.05</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="infchallengediv" id="postc5div" style="height: 140px; display: none">
+                                <span>当购买1-4维度时，价格小于等于它的会价格增长。当购买5-8维度时，价格大于等于它的会价格增长。当购买减少时间间隔时，所有价格相同的会价格增长。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="postc5" class="challengesbtn" onclick="startChallenge('postc5', new Decimal('1e11111'))">开始</button>
+                                    <br>
+                                    <span id="postc5goal" >目标: 1e11111</span><br>
+                                    <span>奖励: 星系增强10%，星系和维度提升的购买需求-1</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="infchallengediv" id="postc6div" style="height: 140px; display: none">
+                                <span>正物质不断增长，你所有维度的倍数将除以正物质的数量。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="postc6" class="challengesbtn" onclick="startChallenge('postc6', new Decimal('2e22222'))">开始</button>
+                                    <br>
+                                    <span id="postc6goal" >目标: 2e22222</span><br>
+                                    <span>奖励: 减少时刻间隔将同样对无限维度产生作用，但效果较弱</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                            <td>
+                                <div class="infchallengediv" id="postc7div" style="height: 140px; display: none">
+                                    <span>你不能获得反物质星系，但是维度提升倍数 2.5x -> 10x</span>
+                                    <br>
+                                    <br>
+                                    <div class="outer">
+                                        <button id="postc7" class="challengesbtn" onclick="startChallenge('postc7', new Decimal('1e10000'))">开始</button>
+                                        <br>
+                                        <span id="postc7goal" >目标: 1e10000</span><br>
+                                        <span>奖励: 维度提升倍数 2.5x -> 4x</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="infchallengediv" id="postc8div" style="height: 140px; display: none">
+                                    <span>在你购买任何事物后产量为100%，之后便逐渐下滑。</span>
+                                    <br>
+                                    <br>
+                                    <div class="outer">
+                                        <button id="postc8" class="challengesbtn" onclick="startChallenge('postc8', new Decimal('1e27000'))">开始</button>
+                                        <br>
+                                        <span id="postc8goal" >目标: 1e27000</span><br>
+                                        <span>奖励: 基于第一维度倍数以及第八维度倍数给与2-7维度一个倍数。</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                </table>
+
+            </div>
+            <div id="eternitychallenges" class="challengeTab">
+                <div>再次完成永恒挑战，获得更多奖励，每个最多完成5次。</div>
+                <table  class="table" style="margin: 0 auto">
+                    <tr>
+                        <td>
+                            <div class="eterchallengediv" id="eterc1div" style="height: 140px; display: none">
+                                <span>禁用时间维度。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc1" class="challengesbtn" onclick="startEternityChallenge('eterc1', new Decimal('1e1800'), new Decimal('1e200'))">开始</button>
+                                    <br>
+                                    <span id="eterc1completed">完成 0 次。</span><br>
+                                    <span id="eterc1goal" >目标: 1e2000 无限点</span><br>
+                                    <span id="ec1reward">奖励: Xx on all Time Dimensions (based on time spent this Eternity)</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="eterchallengediv" id="eterc2div" style="height: 140px; display: none">
+                                <span>禁用无限维度。</span>
+                                <br><br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc2" class="challengesbtn" onclick="startEternityChallenge('eterc2', new Decimal('1e975'), new Decimal('1e175'))">开始</button>
+                                    <br>
+                                    <span id="eterc2completed">Completed 0 Times.</span><br>
+                                    <span id="eterc2goal" >Goal: 1e1000 IP</span><br>
+                                    <span id="ec2reward">Reward: idk lol</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="eterchallengediv" id="eterc3div" style="height: 140px; display: none">
+                                <span>维度5 - 8不生产任何东西。禁用维度献祭。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc3" class="challengesbtn" onclick="startEternityChallenge('eterc3', new Decimal('1e600'), new Decimal('1e75'))">Start</button>
+                                    <br>
+                                    <span id="eterc3completed">Completed 0 Times.</span><br>
+                                    <span id="eterc3goal" >Goal: 1e750 IP</span><br>
+                                    <span id="ec3reward">Reward: idk lol</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="eterchallengediv" id="eterc4div" style="height: 140px; display: none">
+                                <span>禁用无限次数获得翻倍以及生成无限次数的功能。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc4" class="challengesbtn" onclick="startEternityChallenge('eterc4', new Decimal('1e2750'), new Decimal('1e550'))">开始</button>
+                                    <br>
+                                    <span id="eterc4completed">Completed 0 Times.</span><br>
+                                    <span id="eterc4goal" >Goal: 1e4250 IP in 20 infinities</span><br>
+                                    <span id="ec4reward">Reward: Infinity Dimension multiplier from unspent IP</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="eterchallengediv" id="eterc5div" style="height: 140px; display: none">
+                                <span>开始时星系成本的增长值就大幅增长（通常在100个星系后大幅增长）。维度提升成本大幅增加。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc5" class="challengesbtn" onclick="startEternityChallenge('eterc5', new Decimal('1e750'), new Decimal('1e400'))">开始</button>
+                                    <br>
+                                    <span id="eterc5completed">Completed 0 Times.</span><br>
+                                    <span id="eterc5goal" >Goal: 1e3000 IP</span><br>
+                                    <span id="ec5reward">Reward: Galaxy cost scaling starts 10 galaxies later</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="eterchallengediv" id="eterc6div" style="height: 140px; display: none">
+                                <span>你不能正常地获得星系，但是升级你的最大复制反星系的成本大大降低了。
+                                </span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc6" class="challengesbtn" onclick="startEternityChallenge('eterc6', new Decimal('1e850'), new Decimal('1e250'))">开始</button>
+                                    <br>
+                                    <span id="eterc6completed">Completed 0 Times.</span><br>
+                                    <span id="eterc6goal" >Goal: 1e1500</span><br>
+                                    <span id="ec6reward">Reward: Further reduction dimension cost multiplier increase, Current: 3x</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="eterchallengediv" id="eterc7div" style="height: 140px; display: none">
+                                <span>第一个时间维度产生第8个无限维度，第一个无限维度产生第7个维度。减少时间间隔能够正常比例地影响所有维度。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc7" class="challengesbtn" onclick="startEternityChallenge('eterc7', new Decimal('1e2000'), new Decimal('1e530'))">开始</button>
+                                    <br>
+                                    <span id="eterc7completed">Completed 0 Times.</span><br>
+                                    <span id="eterc7goal" >Goal: 1e2700 IP</span><br>
+                                    <span id="ec7reward">奖励: Infinity Dimension multiplier based on time shards, Current: 0x</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="eterchallengediv" id="eterc8div" style="height: 140px; display: none">
+                                <span>你只能将无限维度升级50次，复制品升级40次。
+                                </span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc8" class="challengesbtn" onclick="startEternityChallenge('eterc8', new Decimal('1e1300'), new Decimal('1e900'))">开始</button>
+                                    <br>
+                                    <span id="eterc8completed">Completed 0 Times.</span><br>
+                                    <span id="eterc8goal" >Goal: 1e1150</span><br>
+                                    <span id="ec8reward">Reward: dunno</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="eterchallengediv" id="eterc9div" style="height: 140px; display: none">
+                                <span>你不能买减少时间间隔升级。无限力量加强时间维度，但是效果大大。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc9" class="challengesbtn" onclick="startEternityChallenge('eterc9', new Decimal('1e1750'), new Decimal('1e250'))">Start</button>
+                                    <br>
+                                    <span id="eterc9completed">Completed 0 Times.</span><br>
+                                    <span id="eterc9goal" >Goal: 1e400 IP</span><br>
+                                    <span id="ec9reward">Reward: something good I hope</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="eterchallengediv" id="eterc10div" style="height: 140px; display: none">
+                                <span>时间维度和无限维度被禁用，你从无限次数获得巨大的加成到正常维度<br>
+                                    (无限次数^1000) 当前: <span id="ec10span">xX</span>
+                                </span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc10" class="challengesbtn" onclick="startEternityChallenge('eterc10', new Decimal('1e3000'), new Decimal('1e300'))">Start</button>
+                                    <br>
+                                    <span id="eterc10completed">Completed 0 Times.</span><br>
+                                    <span id="eterc10goal" >Goal: 1e1500</span><br>
+                                    <span id="ec10reward">Reward: dunno</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="eterchallengediv" id="eterc11div" style="height: 140px; display: none">
+                                <span>除了从无限能量和维数提升（到普通维度）所获取的倍数外，禁用所有购买维度时获取的倍数。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc11" class="challengesbtn" onclick="startEternityChallenge('eterc11', new Decimal('1e500'), new Decimal('1e200'))">Start</button>
+                                    <br>
+                                    <span id="eterc11completed">Completed 0 Times.</span><br>
+                                    <span id="eterc11goal" >Goal: 1e400 IP</span><br>
+                                    <span id="ec11reward">Reward: something good I hope</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="eterchallengediv" id="eterc12div" style="height: 140px; display: none">
+                                <span>游戏运行速度减少1000倍。</span>
+                                <br>
+                                <br>
+                                <div class="outer">
+                                    <button id="eterc12" class="challengesbtn" onclick="startEternityChallenge('eterc12', new Decimal('1e110000'), new Decimal('1e12000'))">Start</button>
+                                    <br>
+                                    <span id="eterc12completed">Completed 0 Times.</span><br>
+                                    <span id="eterc12goal" >Goal: 1e110000 in 0.5 seconds or less.</span><br>
+                                    <span id="ec12reward">Reward: Infinity Dimension cost multipliers are reduced. (x^1)</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table id="footer">
+                <tr>
+                    <td>
+                        <div style="text-align:center">
+                            <a href="howto.html" target="_newtab">游戏指南 </a> |
+                            <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                            <a href="changelog.html" target="_newtab">更新日志   </a> |
+                            <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                            <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+        <div id="infinity" class="tab" align="center" style="display: none">
+            <br>
+            <div id="infinityPoints1" style="color: black; font-size: 15px; width: 40%; margin: 0 auto">You have made x Infinity points.</div>
+            <br>
+            <tr>
+                <td><button class="secondarytabbtn" onclick="showInfTab('preinf')">升级</button><td>
+                <td><button class="secondarytabbtn" onclick="showInfTab('autobuyers')">自动购买</button><td>
+                <td><button id="postinfbtn" class="secondarytabbtn" onclick="showInfTab('postinf')" >突破无限</button><td>
+                <td><button id="replicantitabbtn" class="secondarytabbtn" onclick="showInfTab('replicantis')">复制品</button><td>
+            </tr>
+            <div id="preinf" class="inftab">
+            <br>
+            <table class="table" style="margin: 0 auto">
+                <tr>
+                    <td>
+                        <button id="infi11" class="infinistorebtn1">Production increase over time <br>currently:</button>
+                    </td>
+                    <td>
+                        <button id="infi21" class="infinistorebtn2">每买10个维度的倍数增加 <br>2x -> 2.2x<br>花费: 1 无限点数</button>
+                    </td>
+                    <td>
+                        <button id="infi31" class="infinistorebtn3">Production increase over time in current infinity<br>Cost: 3 IP</button>
+                    </td>
+                    <td>
+                        <button id="infi41" class="infinistorebtn4">开始时已解锁第五维度<br>花费: 20 无限点数</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="infi12" class="infinistorebtn1">First and Eighth Dimension power <br>xx</button>
+                    </td>
+                    <td>
+                        <button id="infi22" class="infinistorebtn2">Second and Seventh Dimension power <br>xx</button>
+                    </td>
+                    <td>
+                        <button id="infi32" class="infinistorebtn3">Bonus per unspent Infinity Point <br>xx</button>
+                    </td>
+                    <td>
+                        <button id="infi42" class="infinistorebtn4">开始时已解锁第六维度<br>花费: 40 无限点数</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="infi13" class="infinistorebtn1">Third and Sixth Dimension power <br>xx</button>
+                    </td>
+                    <td>
+                        <button id="infi23" class="infinistorebtn2">Fourth and Fifth Dimension power <br>xx</button>
+                    </td>
+                    <td>
+                        <button id="infi33" class="infinistorebtn3">维度提升倍数增加 <br>2x -> 2.5x<br>花费: 7 无限点数</button>
+                    </td>
+                    <td>
+                        <button id="infi43" class="infinistorebtn4">开始时已解锁第七维度<br>花费: 80 无限点数</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="infi14" class="infinistorebtn1">维度提升以及反物质星系的维度需求减少9<br>花费: 1 无限点数</button>
+                    </td>
+                    <td>
+                        <button id="infi24" class="infinistorebtn2">反物质星系的效果翻倍<br>花费: 2 无限点数</button>
+                    </td>
+                    <td>
+                        <button id="infi34" class="infinistorebtn3">Infinity Point generation (based on fastest infinity) <br>xx</button>
+                    </td>
+                    <td>
+                        <button id="infi44" class="infinistorebtn4">开始时已解锁第八维度, 并拥有一个星系<br>花费: 500 无限点数</button>
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </table>
+            <br>
+            <div><button id="infiMult" class="infinimultbtn">Multiply infinity points from all sources by 2 <br>当前: <br>Cost: 100 IP</button></div>
+            <div><button id="infmultbuyer" class="storebtn" onclick="infMultAutoToggle()" style="display:none; height: 25px; width: 190px; font-size:10px; margin-top: 3px;">Autobuy IP mult ON</button></div>
+            <div>
+                <table id="footer">
+                    <tr>
+                        <td>
+                            <div style="text-align:center">
+                                <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a> |
+                                <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="autobuyers" class="inftab">
+            <br>
+            <table class="table" style="margin: 0 auto">
+                <button class="storebtn" id="toggleautobuyers" style="font-size: 100%; width: 150px; height: 40px; margin: 3px" onclick="toggleAutoBuyers()">启用/禁用 自动购买</button>
+                <button class="storebtn" id="togglebulk" style="font-size: 100%; width: 150px; height: 40px;margin: 3px" onclick="toggleBulk()">禁用批量购买                     </button>
+                <button class="storebtn" id="togglecrunchmode" style="font-size: 100%; width: 150px; height: 40px;margin: 3px; display: none" onclick="toggleCrunchMode()">Auto crunch mode: amount</button>
+                <br>
+                <div class="autoBuyerDiv" id="autoBuyerEter">
+                    <div>自动永恒</div>
+                    <div><span>等到可获得这么多永恒点数再永恒:</span>
+                    <input type="text" onchange="updatePriorities()" id="priority13"></input></div>
+                    <br>
+                    <span style="font-size: 80%">启用</span>
+                    <input type="checkbox" onchange="updateAutobuyers()"  id="eternityison"></input>
+                </div>
+                <tr>
+                        <td>
+                            <div class="autoBuyerDiv" id="autoBuyerDimBoost" style="font-size: 11px;">
+                                <div>自动维度提升</div>
+
+                                <button class="autobuyerbtn" id="buyerBtnDimBoost">46%较小的区间<br>成本: 2 点</button>
+                                <div style="font-size: 80%"id="intervalDimBoost">当前时间间隔:30秒</div>
+                                <span style="font-size: 80%">拥有多少个第八维度前总是维度提升:</span>
+                                <input type="text" onchange="updatePriorities()" id="priority10"></input>
+                                <br>
+                                <span style="font-size: 80%">拥有多少个星系后总是维度提升:</span>
+                                <input type="text" onchange="updatePriorities()" id="overGalaxies"></input>
+                                <br>
+                                <div id="bulkdimboost">
+                                    <span style="font-size: 80%" id="bulklabel">Bulk DimBoost amount:</span>
+                                    <input type="text" onchange="updatePriorities()" id="bulkDimboost"></input>
+                                </div>
+                                <br>
+                                <span style="font-size: 80%">启用</span>
+                                <input type="checkbox" onchange="updateAutobuyers()"   id="10ison"></input>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="autoBuyerDiv" id="autoBuyerGalaxies">
+                                <div>自动购买星系</div>
+                                <button class="autobuyerbtn" id="buyerBtnGalaxies">46% smaller interval<br>Cost: 2 points</button>
+                                <div style="font-size: 80%"id="intervalGalaxies">Current interval: 30 seconds</div>
+                                <span>最大星系数:</span>
+                                <input type="text" onchange="updatePriorities()" id="priority11"></input>
+                                <br>
+                                <div id="galaxybulk" style="display: none">
+                                    <span style="font-size: 80%">每X秒购买一次最大星系 (设为0为总是购买):</span>
+                                    <input type="text" onchange="updatePriorities()" id="bulkgalaxy"></input>
+                                </div>
+                                <br>
+                                <span style="font-size: 80%">启用</span>
+                                <input type="checkbox" onchange="updateAutobuyers()"   id="11ison"></input>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="autoBuyerDiv" id="autoBuyerInf">
+                                <div>自动大坍缩</div>
+                                <button class="autobuyerbtn" id="buyerBtnInf">46% smaller interval<br>Cost: 2 points</button>
+                                <div style="font-size: 80%"id="intervalInf">Current interval: 60 seconds</div>
+                                <div id="iplimit"><span id="limittext">等到可获得这么多无限点数再坍缩:</span>
+                                <input type="text" onchange="updatePriorities()" id="priority12"></input></div>
+                                <br>
+                                <span style="font-size: 80%">启用</span>
+                                <input type="checkbox" onchange="updateAutobuyers()"   id="12ison"></input>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                <tr>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyer1">
+                            <div>第一维度自动购买</div>
+                            <button class="autobuyerbtn" id="buyerBtn1">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtn1">Buys singles</button>
+                            <div style="font-size: 80%"id="interval1">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority1">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="1ison"></input>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyer2">
+                            <div>第二维度自动购买</div>
+                            <button class="autobuyerbtn" id="buyerBtn2">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtn2">Buys singles</button>
+                            <div style="font-size: 80%"id="interval2">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority2">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="2ison"></input>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyer3">
+                            <div>第三维度自动购买</div>
+                            <button class="autobuyerbtn" id="buyerBtn3">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtn3">Buys singles</button>
+                            <div style="font-size: 80%"id="interval3">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority3">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="3ison"></input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyer4">
+                            <div>第四维度自动购买</div>
+                            <button class="autobuyerbtn" id="buyerBtn4">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtn4">Buys singles</button>
+                            <div style="font-size: 80%"id="interval4">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority4">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="4ison"></input>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyer5">
+                            <div>第五维度自动购买</div>
+                            <button class="autobuyerbtn" id="buyerBtn5">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtn5">Buys singles</button>
+                            <div style="font-size: 80%"id="interval5">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority5">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="5ison"></input>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyer6">
+                            <div>第六维度自动购买</div>
+                            <button class="autobuyerbtn" id="buyerBtn6">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtn6">Buys singles</button>
+                            <div style="font-size: 80%"id="interval6">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority6">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="6ison"></input>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyer7">
+                            <div>第七维度自动购买</div>
+                            <button class="autobuyerbtn" id="buyerBtn7">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtn7">Buys singles</button>
+                            <div style="font-size: 80%"id="interval7">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority7">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="7ison"></input>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyer8">
+                            <div>第八维度自动购买</div>
+                            <button class="autobuyerbtn" id="buyerBtn8">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtn8">Buys singles</button>
+                            <div style="font-size: 80%"id="interval8">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority8">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="8ison"></input>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="autoBuyerDiv" id="autoBuyerTickSpeed">
+                            <div>自动升级时间间隔</div>
+                            <button class="autobuyerbtn" id="buyerBtnTickSpeed">46% smaller interval<br>Cost: 2 points</button>
+                            <button class="autobuyerbtn" id="toggleBtnTickSpeed">Buys singles</button>
+                            <div style="font-size: 80%"id="intervalTickSpeed">Current interval: 5 seconds<br></div>
+                            <span>优先级:</span>
+                            <select onchange="updatePriorities()" id="priority9">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            </select>
+                            <br>
+                            <span style="font-size: 80%">启用</span>
+                            <input type="checkbox" onchange="updateAutobuyers()"   id="9ison"></input>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="autoBuyerDiv" id="autoBuyerSac">
+                <div>自动献祭</div>
+                <div id="intervalSac" style="font-size: 80%">Current interval: 0.10 seconds</div>
+                <div id="iplimit"><span>当倍数超过这个值后献祭:</span>
+                <input type="text" onchange="updatePriorities()" id="prioritySac"></input></div>
+                <br>
+                <span style="font-size: 80%">启用</span>
+                <input type="checkbox" onchange="updateAutobuyers()" id="13ison"></input>
+            </div>
+
+            <div>
+                <table id="footer">
+                    <tr>
+                        <td>
+                            <div style="text-align:center">
+                                <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="postinf" class="inftab" align="center">
+            <br>
+            <div id="abletobreak">你需要将自动大坍缩的间隔减少到0.1才能够突破无限</div>
+                <br>
+                <table id="postinftable" class="table" style="margin: 0 auto">
+                    <tr>
+                        <td>
+                            <button class="infinistorebtnbought" style="opacity: 0"></button>
+                        </td>
+                        <td>
+                            <button id="break" class="infinistorebtn2" onclick="breakInfinity()" ach-tooltip="到达无限后成本的倍数开始增加得越来越快，但是无限点数的获得也是如此">突破无限</button>
+                        </td>
+                        <td>
+                            <button class="infinistorebtnbought" style="opacity: 0"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="postinfi11" class="infinistorebtn1">Production based on total antimatter produced <br>Currently:<br>Cost: 10 K IP</button>
+                        </td>
+                        <td>
+                            <button id="postinfi21" class="infinistorebtn1">Production based on current antimatter<br>Currently: <br>Cost: 50 K IP</button>
+                        </td>
+                        <td>
+                            <button id="postinfi41" class="infinistorebtn1">Double the power of Galaxies<br>Currently: <br>Cost: 500 K IP</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="postinfi12" class="infinistorebtn1">Increase the production of all dimensions by amount infinitied <br>Currently:<br>Cost: 100 K IP</button>
+                        </td>
+                        <td>
+                            <button id="postinfi22" class="infinistorebtn1">achievemult</button>
+                        </td>
+                        <td>
+                            <button id="postinfi32" class="infinistorebtn1">Increase the production of all dimensions based on slowest challenge run<br>Cost: 3 M IP</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="postinfi13" class="infinistorebtn1" onclick="buyInfinityUpgrade('infinitiedGeneration',20e6)">You passively generate Infinitied stat based on your fastest infinity.<br>1 every <br>Cost: 20 M IP</button>
+                        </td>
+                        <td>
+                            <button id="postinfi23" class="infinistorebtn1" onclick="buyInfinityUpgrade('bulkBoost',5e9)">Option to bulk buy Dimension Boosts <br>Cost: </button>
+                        </td>
+                        <td>
+                            <button id="postinfi33" class="infinistorebtn1" onclick="buyInfinityUpgrade('autoBuyerUpgrade',1e15)">Autobuyers work twice as fast <br>Cost: 1 Qa IP</button>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="postinfi31" class="infinimultbtn">Tickspeed cost multiplier increase <br>10x -> 9x<br>Cost: 300 K IP</button>
+                        </td>
+                        <td>
+                            <button id="postinfi42" class="infinimultbtn">Dimension cost multiplier increase <br>10x -> 9x<br>Cost: 10 M IP</button>
+                        </td>
+                        <td>
+                            <button id="offlineProd" class="infinimultbtn">Dimension cost multiplier increase <br>10x -> 9x<br>Cost: 10 M IP</button>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <table id="footer">
+                        <tr>
+                            <td>
+                                <div style="text-align:center">
+                                    <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                    <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                    <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                    <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                    <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+        </div>
+        <div id="replicantis" class="inftab">
+            <br>
+            <button class="storebtn" id="replicantiunlock" onclick="unlockReplicantis()" style="width:200px; height: 80px">Unlock Replicantis<br>Cost: 1e140 IP</button>
+            <div id="replicantidiv" style="display: none; width: 1000px">
+                <div id="eterc8repl" style="display: none;"></div>
+                <p style="font-size: 15px">你拥有 <span id="replicantiamount" style="font-size:23px; color: black">0</span> 复制品。转化来就是给所有无限维度乘以 <span id="replicantimult" style="font-size:23px; color: black">0</span>x 的倍数</p>
+                <br>
+                <button class="storebtn" id="replicantichance" onclick="upgradeReplicantiChance()" style="width:180px; height: 50px; font-size: 10px">Replicate chance: 1%<br>+1% Costs: 1e6969 IP</button>
+                <button class="storebtn" id="replicantiinterval" onclick="upgradeReplicantiInterval()" style="width:180px; height: 50px; font-size: 10px">时间间隔: 1000ms<br>-> 900 Costs: 1e6969 IP</button>
+                <button class="storebtn" id="replicantimax" onclick="upgradeReplicantiGalaxy()" style="width:180px; height: 50px; font-size: 10px">Max Replicanti galaxies: 0<br>+1 Costs: 1e6969 IP</button>
+                <br>
+                <button class="storebtn" id="replauto1" onclick="toggleReplAuto('chance')" style="width:180px; font-size: 10px; visibility: hidden">自动: 开启</button>
+                <button class="storebtn" id="replauto2" onclick="toggleReplAuto('interval')" style="width:180px; font-size: 10px; visibility: hidden">自动: 开启</button>
+                <button class="storebtn" id="replauto3" onclick="toggleReplAuto('galaxy')" style="width:180px; font-size: 10px; visibility: hidden">自动: 开启</button>
+                <br><br><br>
+                <p id="replicantiapprox"></p>
+                <br>
+                <button class="storebtn" id="replicantireset" onclick="replicantiGalaxy()" style="width: 200px; height: 70px; font-size: 12px">Reset replicanti amount, but get a free galaxy</button>
+                <br>
+                <button class="storebtn" id="replicantiresettoggle" onclick="replicantiGalaxyAutoToggle()" style="width: 200px; height: 25px; font-size: 12px; display: none">自动星系关闭</button>
+            </div>
+            <div id="footercontainer">
+                <table id="footer">
+                    <tr>
+                        <td>
+                            <div style="text-align:center">
+                                <a href="howto.html" target="_newtab">游戏指南 </a> |
+                                <a href="about.html" target="_newtab" onclick="giveAchievement('A sound financial decision')">捐赠   </a> |
+                                <a href="changelog.html" target="_newtab">更新日志   </a> |
+                                <a href="https://discord.gg/ST9NaXa" target="_newtab">Discord</a> |
+                                <a href="https://www.reddit.com/r/AntimatterDimensions/" target="_newtab">Subreddit</a>      |    <a href="https://ivark.github.io/savefixer/index.html" target="_newtab">存档修复</a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    <div class="popup" id="update">
+        <div id="updatePopup">最后一个测试.</div>
+        <button class="storebtn" style="font-size: 15px" onclick="closeToolTip()" style="display: inline">好的</button>
+    </div>
+    <div class="popup" id="challfail">
+        <div id="failPopup">你挑战失败,现在将退出。</div>
+        <button class="storebtn" style="font-size: 15px" onclick="closeToolTip()" style="display: inline">好的</button>
+    </div>
+    <div class="popup" id="offlineprogress" style="width: 450px; height: 200px;">
+        <div id="offlinePopup" style="height: 150px">你制造了X反物质之类的东西</div>
+        <button class="storebtn" style="font-size: 15px" onclick="closeToolTip()" style="display: inline">好的</button>
+	</div>
+	<div class="popup savemenu" id="loadmenu">
+		<button class="closebtn storebtn" onclick="closeToolTip()">&times;</button>
+		<div id="save1">
+			<strong>存档 #1: <span class="save_selected">(已选择)</span></strong>
+			<span class="save_antimatter"></span>
+			<button class="storebtn" style="font-size: 15px" onclick="change_save(0)" style="display: inline">加载</button>
+		</div>
+		<div id="save2">
+			<strong>存档 #2: <span class="save_selected">(已选择)</span></strong>
+			<span class="save_antimatter"></span>
+			<button class="storebtn" style="font-size: 15px" onclick="change_save(1)" style="display: inline">加载</button>
+		</div>
+		<div id="save3">
+			<strong>存档 #3: <span class="save_selected">(已选择)</span></strong>
+			<span class="save_antimatter"></span>
+			<button class="storebtn" style="font-size: 15px" onclick="change_save(2)" style="display: inline">加载</button>
+		</div>
+	</div>
+	<div class="popup savemenu" id="cloudloadconflict">
+		<strong>您的云存储似乎比本地存储更古老。请选择你想保留的那个。</strong>
+		<div id="local">
+			<strong>存档 #<span class="save_id"></span> (本地):</strong>
+			<span>无限: <span class="save_infinities"></span></span>
+			<span>永恒: <span class="save_eternities"></span></span>
+			<button class="storebtn" style="font-size: 15px" style="display: inline">加载本地</button>
+		</div>
+		<div id="cloud">
+			<strong>存档 #<span class="save_id"></span> (云):</strong>
+			<span>无限: <span class="save_infinities"></span></span>
+			<span>永恒: <span class="save_eternities"></span></span>
+			<button class="storebtn" style="font-size: 15px" style="display: inline">加载云存档</button>
+		</div>
+	</div>
+	<div class="popup savemenu" id="cloudsaveconflict">
+		<strong>您的本地存储似乎比您的云存储更古老。您想要覆盖云存储吗?</strong>
+		<div id="local">
+			<strong>存档 #<span class="save_id"></span> (本地):</strong>
+			<span>无限: <span class="save_infinities"></span></span>
+			<span>永恒: <span class="save_eternities"></span></span>
+		</div>
+		<div id="cloud">
+			<strong>存档 #<span class="save_id"></span> (云):</strong>
+			<span>无限: <span class="save_infinities"></span></span>
+			<span>永恒: <span class="save_eternities"></span></span>
+		</div>
+
+		<button class="storebtn yes" style="font-size: 15px" style="display: inline">是的</button>
+		<button class="storebtn no" style="font-size: 15px" style="display: inline">取消</button>
+    </div>
+    <div class="popup savemenu" id="animationoptions">
+        <button class="closebtn storebtn" onclick="closeToolTip()">&times;</button>
+		<button id="floatingTextAnimBtn" class="storebtn" onclick="animationOnOff('floatingText')" style="width: 200px; height: 55px; font-size: 15px" style="display: inline">开启</button>
+        <button id="bigCrunchAnimBtn" class="storebtn" onclick="animationOnOff('bigCrunch')" style="width: 200px; height: 55px; font-size: 15px" style="display: inline">开启</button>
+        <button id="tachyonParticleAnimBtn" class="storebtn" onclick="animationOnOff('tachyonParticles')" style="width: 200px; height: 55px; font-size: 15px" style="display: inline">开启</button>
+	</div>
+    <div id="TTbuttons" style="display:none;">
+        <button class="timetheorembtn" onclick="maxTheorems()" style="margin-left:-276px; width:130px; height: 30px; font-size: 0.75rem; bottom: 77px;">购买最大时间定律</button>
+        <button class="timetheorembtn" onclick="studyTreeSaveButton(1)" style="margin-left:176px; width:30px; height: 30px; font-size: 0.75rem; bottom: 77px;">1</button>
+        <button class="timetheorembtn" onclick="studyTreeSaveButton(2)" style="margin-left:211px; width:30px; height: 30px; font-size: 0.75rem; bottom: 77px;">2</button>
+        <button class="timetheorembtn" onclick="studyTreeSaveButton(3)" style="margin-left:246px; width:30px; height: 30px; font-size: 0.75rem; bottom: 77px;">3</button>
+        <button class="timetheorembtn" onclick="buyWithAntimatter()" id="theoremam" style="margin-left: -276px">购买时间定律 <br>成本: 1e20000 antimatter</button>
+        <button class="timetheorembtn" onclick="buyWithIP()" id="theoremip" style="margin-left: -86px">购买时间定律 <br>成本: 1 IP</button>
+        <button class="timetheorembtnlocked" onclick="buyWithEP()" id="theoremep" style="margin-left: 106px">购买时间定律 <br>成本: 1 EP</button>
+        <div id="theorembuybackground"></div>
+        <p id="timetheorems" style="position: fixed;">你有0个时间定理。</p>
+        <p id="studytreeloadsavetext" style="position: fixed;">加载:</p>
+    </div>
+    <div id="progress" style="display:none">
+        <div id="progressbar"><span id="progresspercent" ach-tooltip="Percentage until Infinity">0%</span></div>
+    </div>
+</body>
+
+
+
+<script type="text/javascript"src="PlayFab/PlayFabClientApi.js"></script>
+<script type="text/javascript" src="javascripts/autobuyer.js"></script>
+<!-- script type="text/javascript" src="javascripts/decimal.js"></script> -->
+<script type="text/javascript" src="javascripts/breakinfinity.js"></script>
+<script type="text/javascript" src="javascripts/chart.js"></script>
+<script type="text/javascript" src="javascripts/lz-string.js"></script>
+
+
+<script type="text/javascript" src="javascripts/core/polyfill.js"></script>
+<script type="text/javascript" src="javascripts/core/format.js"></script>
+<script type="text/javascript" src="javascripts/core/achievements.js"></script>
+<script type="text/javascript" src="javascripts/core/chart.js"></script>
+<script type="text/javascript" src="javascripts/core/tickspeed.js"></script>
+<script type="text/javascript" src="javascripts/core/normal_dimension.js"></script>
+<script type="text/javascript" src="javascripts/core/infinity_dimension.js"></script>
+<script type="text/javascript" src="javascripts/core/time_dimension.js"></script>
+<script type="text/javascript" src="javascripts/core/dimboost.js"></script>
+<script type="text/javascript" src="javascripts/core/timestudies.js"></script>
+<script type="text/javascript" src="javascripts/core/canvases.js"></script>
+<script type="text/javascript" src="javascripts/core/devtools.js"></script>
+<script type="text/javascript" src="javascripts/core/load_functions.js"></script>
+<script type="text/javascript" src="javascripts/core/newsticker.js"></script>
+<script type="text/javascript" src="javascripts/core/kong.js"></script>
+<script type="text/javascript" src="javascripts/core/playfab.js"></script>
+<script type="text/javascript" src="javascripts/game.js?85"></script>
+
+
+<script type="text/javascript" src="javascripts/sha512.js"></script>
+
+
+<!--站长统计-->
+    <div style="display: none">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?dbb7ff142f4d4b68546c93b9cd6e9328";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    </div>
+</html>

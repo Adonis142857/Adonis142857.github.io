@@ -1,0 +1,272 @@
+<html>
+  <head>
+   <meta charset="utf-8" />
+  <title>游戏指南</title>
+  <link rel='stylesheet' type='text/css' href='stylesheets/howto.css'>
+  <link rel="icon" type="image/png" href="icon.png">
+  </head>
+  <body style="padding: 10px 20%">
+  <h1 style="text-align: center">
+  游戏指南
+  </h1>
+  <div style="text-align: center">
+  游戏指南 – 反物质维度
+  </div>
+  <hr>
+  <div style="text-align: center">
+  反物质维度是一个放置增量游戏，有多层的解锁、重置以及成就。基本的目标是达到无限并获取无限点数，无限点数可以花在各种技能上，从而提高你的整体产量。
+  </div>
+  <hr>
+  <div style="text-align: center">
+  你可以在这里选择是否可以看到剧透部分。将此设为"回避剧透"将只会显示你已到达的内容,以及你接下来马上要解锁的内容。
+  </div>
+  <table style="margin: auto;">
+    <tr>
+      <td>
+          <button onclick='showspoilers()' class="storebtn" id="showspoilersbtn" style="margin-top: 5px;">查看: <br> 回避剧透</button>
+      </td>
+      <td>
+          <button class="storebtn" id="importbtn" style="margin-top: 5px;">导入存档</button>
+      </td>
+    </tr>
+  </table>
+  <hr>
+  <button onclick='changestate(1)' id='div1btn'  class="storebtn">维度</button>
+  <div style="text-align: left" id='div1' class='hidden'>
+  <b>维度:</b>
+  <br>
+  维度是你在游戏中的生产单元。 第一个维度生产你的反物质。 每个高阶维度都会生产前一个维度，使你能够持续增长。总共有八个维度。
+  <br>
+  <b>维度倍数:</b> 在维度后面的是一个倍数 (举例: 第一维度 x1.0)。 每个维度的基础产量都要乘以这个数字。每买10个这个维度，它的倍数都会x2(开始时)。每买10次倍数增加后，这个维度的价格将会上升。
+  <br>
+  <b>累计维度数量:</b> 下一列就是你当前拥有这个维度的数量。这个数值包括你用反物质购买的维度，也包括高阶维度所生产的。
+  <br>
+  <b>购买维度数量:</b>  累计拥有维度数量之后，紧接着就是括号中的向着下一个倍数升级购买的次数。如果数值为(4)，意味着再买6个这个维度就能到达下一个倍数加成。
+  <br>
+  <b>维度增长百分比:</b>  这个数字表示这个维度每秒的增长率。+100%意味着每秒这个维度数量翻倍。这个数值可以帮助你判断全局增长。
+  <br>
+  <b>成本 & 直到 10:</b> 当 成本 按钮高亮时，你可以购买单个数量的维度。此外，如果 直到10 按钮高亮，你可以购买让这个维度到达下一个维度倍数的数量。
+  <br>
+  <b>全部最大:</b> 全部最大将会购买最大的时间间隔(见下文)，然后将购买第八维度的直到10，直到无法购买，然后购买维度7的直到10，然后继续下去。
+  <br>
+  <b>维度基础价格:</b> 10, 100, 10000, 1e6, 1e9, 1e13, 1e18, 1e24
+  <br>
+  <b>每买10个维度的价格基础增长倍数:</b>1000, 10000, 1e5, 1e6, 1e8, 1e10, 1e12, 1e15
+      <br>
+    <b>快捷键: 1, 2, 3, 4, 5, 6, 7, 8</b> 来购买直到 10 的第[]个维度, <b>M</b> 来购买全部最大
+  </div>
+  <hr id='div1hr'>
+  <button onclick='changestate(2)' id='div2btn' class="storebtn">时刻</button>
+  <div style="text-align: left" id='div2' class='hidden'>
+  <b>时刻:</b> 游戏中的生产发生在每个"时刻"。
+  <br>
+  <b>间隔:</b> 每个时刻间的时间长度。这个可以通过购买减少时刻间隔来减少。
+  <br>
+  <b>花费:</b> 花费反物质来按上面显示的百分比%减少时刻间隔。(如果没有反物质星系，每次购买你的基础时刻间隔减少11%)
+  <br>
+  <b>购买最大:</b> 根据你当前的反物质来购买最大数量的减少时刻间隔。
+  <br>
+  注意，实际上时刻间隔是虚构的，游戏的实际运行一直是每秒20时刻(根据你所设置的刷新速度变化)。
+  </div>
+  <hr id='div2hr'>
+  <button onclick='changestate(3)' id='div3btn' class="storebtn">维度转换/提升</button>
+  <div style="text-align: left" id='div3' class='hidden'>
+  <b>维度转换:</b> 这将重置你当前游戏，但是会在下一轮解锁一个新的维度。每次维度转换需要20(基础)个你当前最高解锁的维度。
+  <br>
+  <b>维度提升:</b> 类似一次维度转换，但是不会解锁一个新的维度。这个功能在4次维度转换后开启。每次维度提升需要20+(转换次数*15)(基础)个第八维度。
+  <br>
+  每个维度转换以及维度提升都会为第一维度提供x2(基础)的倍数，然后每后一个维度都会有前一个维度一半(基础)的倍数(最小为1)。
+      <br>
+    <b>快捷键: D</b>
+  </div>
+  <hr id='div3hr'>
+  <button onclick='changestate(4)' id='div4btn' class="storebtn">反物质星系</button>
+  <div style="text-align: left" id='div4' class='hidden'>
+  购买一个反物质星系将会使你的游戏重置到只有4个可用维度的时候，但是会使每次时间间隔减少增加2%。
+  <br>
+  尽管这对最初的几次时刻升级不会产生什么影响，但效果增长是倍增的，不会花很长时间就能显现出来。
+  <br>
+  你的第一个星系会认为你最初为10%来减少你的时刻间隔，所以你买了第一个星系后只有12%。
+  <br>
+  购买星系需要80+(星系数量*60)的第八维度。当你超过100非复制星系时需要(80+星系数量*60+(星系数量-99)^2*2)第八维度
+  <br>
+    <b>快捷键: G</b>
+  </div>
+  <hr id='div4hr'>
+  <button onclick='changestate(5)' id='div5btn' class="storebtn">维度献祭</button>
+  <div style="text-align: left" id='div5' class='hidden'>
+  当你第一次维度提升后解锁维度献祭。
+  <br>
+  献祭后会马上使维度1-7的数量减为0、这并不会减少维度倍数以及当前花费。作为回报，献祭会使第八维度的维度倍数乘以显示出的值。之后会花一些时间来恢复之前的产量，但是最终你会有一个提升。
+  <br>
+  <b>我什么时候该献祭?</b> 取决于你的百分比 (+%/s), 但如果它们超过了 ~2% 并且倍数大于2x，我认为这是值得的。百分比的值越低，你恢复产量的时间就会越长。
+  <br>
+  <b>维度献祭选择框:</b> 勾选后当你维度献祭时不会弹出警告。
+  <br><br>
+  维度献祭的公式 (n是你本轮所拥有第一维度的总数量) 为:
+  <br>
+  基础: (log(n)/10)^m, m的基础值为2, 当完成"The Gods are pleased"(三排第二个)成就后变为2.2，在完成"Gift from the Gods"(五排第七个)成就后变为2.5。
+  <br>
+  第八维度自动购买挑战: m^0.05/n^0.04*j, m是你当前拥有的第一维度数量，j是你前一次维度献祭的倍数。
+  <br>
+  完成无限挑战2后: n^m, m基础值为0.01，在完成"Yet another infinity reference"(八排最后一个)成就后变为0.011。
+      <br>
+    <b>快捷键: S</b>
+  </div>
+  <hr id='div5hr'>
+  <button onclick='changestate(6)' id='div6btn' class="storebtn">无限</button>
+  <div style="text-align: left" id='div6' class='hidden'>
+  一旦你拥有太多反物质，这个世界处理不过来 (达到2^1024, 或是 1.7976931348623159e308)，你将达到无限并可以执行“大坍缩”。
+  <br>
+  每完成一次无限将给予一个无限点数。你可以用无限点数在新的无限页面来购买升级。你购买这些升级的顺序必须是由上至下。
+  <br>
+  "所有来源的无限点数翻倍"升级可以多次购买，但是每次购买需要之前十倍的无限点数。你需要把上面16项升级全部购买后才能购买这项升级。
+  <br>
+  <b>我该何时尝试到达无限?</b> 建议在拥有2个星系后再尝试达到无限。在这个过程中，你应该尽可能多的维度提升。
+  </div>
+  <hr id='div6hr'>
+  <button onclick='changestate(7)' id='div7btn' class="storebtn">成就</button>
+  <div style="text-align: left" id='div7' class='hidden'>
+  每一项成就都有在获得之前必须满足的条件。有些非常简单，有些则非常棘手。在尝试一些困难的成就之前，你可能需要到达无限或是开始一个挑战。
+  <br>
+  每完成一行成就，所有维度的倍数都会乘以1.5，,除此以外，一些成就也会有它们额外的奖励。
+  </div>
+  <hr id='div7hr'>
+  <button onclick='changestate(8)' id='div8btn' class="storebtn">挑战</button>
+  <div style="text-align: left" id='div8' class='hidden'>
+  在第一次到达无限后会解锁挑战；它们会改变一些游戏机制来创造一个更难以到达无限的环境。
+  <br>
+  每完成一个挑战都会获得一个自动购买。你可以多次运行同一挑战(只有第一次完成才能获得奖励)，并且可以随时通过挑战页面的“退出挑战”按钮来退出。
+  <br>
+  无限升级中的最右侧一列在挑战中会失效。
+  </div>
+  <hr id='div8hr'>
+  <button onclick='changestate(9)' id='div9btn' class="storebtn">自动购买</button>
+  <div style="text-align: left" id='div9' class='hidden'>
+  <b>自动购买:</b>
+  <br>
+  自动购买(通过完成挑战获得)让你能够自动购买维度、维度转换/提升、星系、减少时间间隔、大坍缩，以及维度献祭(之后)。它们位于无限页面下的“自动购买”中。
+  <br><br>
+  <b>优先级:</b> 优先级使游戏在同一时刻可购买两个事物的时候可分辨出先购买哪一个。优先级1就是第一批购买，优先级2就是第二批购买，以此类推。两个相同的优先级会随机挑选一个购买。<!-- While you cannot set these, big crunch has a priority of 0, galaxies have a priority of 10, dimboosts 11, and sacrifice (once unlocked) 11. -->
+  <br>
+  <b>自动购买速度:</b>自动购买在两次购买间的冷却时间。这个是每100ms判定一次的，所以200ms和101ms也是同样的速度。
+  <br>
+  <b>批量购买:</b> 当一个自动购买的速度已经升到最大，所有未来的升级都会使每次自动购买的数量翻倍。这个功能可以关闭。
+  <br>
+  <b>维度自动购买 购买数量:</b> 维度的自动购买可以设置购买单次，或是购买到10.在设置为购买单次时批量购买不起作用。
+  <br>
+  <b>自动升级时间间隔 购买数量:</b> 自动升级时间间隔也可以设置一次购买购买单次或是购买最大。
+  <br>
+  <b>定制自动维度提升:</b> 你可以设置一个最大数量的第八维度，在拥有这么多第八维度前总是维度提升；也可以设置一个星系数量，在拥有这么多星系后总是维度提升，并且(在解锁后)能拥有批量购买维度提升的能力(批量购买固定的数量)。
+  <br>
+  <b>最大星系数:</b> 自动购买星系可买的最大星系数量。
+  <br>
+  <b>坍缩时无限点数:</b> 当你突破无限后，你可以设置在可获得多少无限点数时坍缩。支持用e的计数法 (12.34e5 就是 1234000).
+  <br>
+  <b>自动献祭:</b> 这个自动购买开始就有最快的速度。你可以设置在可获得多少倍数时献祭。支持使用e的计数法。
+  <br>
+  自动购买速度翻倍的升级会使所有自动购买购买的速度变为原来两倍。<br>
+    <b>禁用/启用自动购买:</b> 这个按钮会把所有自动购买开启或是关闭。 <!--say how it decides which?-->
+      <br>
+    <b>快捷键: A</b> (禁用/启用自动购买)
+  </div>
+  <hr id='div9hr'>
+  <button onclick='changestate(10)' id='div10btn' class="storebtn">突破无限</button>
+  <div style="text-align: left" id='div10' class='hidden'>
+  开始时反物质维度会受到"无限"的限制。自一个重要的更新后，你在自动大坍缩升满后可以“打破无限”。这开启了一些新的可选升级，你每一轮也可以获得超过1的无限点数。
+  <br>
+  <b>修复无限:</b>通过点击修复无限，你可以随时从突破无限转换回去。
+  <br>
+  <b>无限点数获取公式:</b>10^(log(当前反物质)/n-0.75)*加成, n默认为308, 完成"This achievement doesn't exist II"(十排第三个)会变为307.8， or 290 with the relevant timestudy.
+  </div>
+  <hr id='div10hr'>
+  <button onclick='changestate(11)' id='div11btn' class="storebtn">无限维度</button>
+  <div style="text-align: left" id='div11' class='hidden'>
+  <b>解锁无限维度:</b>拥有一定数量的反物质可以开启无限维度。
+  <br>
+  <b>无限维度花费:</b>无限维度每次只能购买10个，并且花费无限点数。
+  <br>
+  <b>无限维度生产:</b>和普通维度类似，每一个无限维度都会生产低一阶的无限维度。维度3生产2,2生产1。无限维度不生产反物质，而是生产无限力量，无限力量可以给所有普通维度一个倍数加成。
+  <br>
+  无限力量给所有维度的倍数加成为 (无限力量^7).
+  </div>
+  <hr id='div11hr'>
+  <button onclick='changestate(12)' id='div12btn' class="storebtn">无限挑战</button>
+  <div style="text-align: left" id='div12' class='hidden'>
+  无限挑战类似于普通挑战，但是它们有更高的完成目标，以及一般比普通挑战更要困难(但是有不同的奖励)。
+  <br>
+  它们会在你拥有指定的反物质数量后解锁-越后面解锁的(通常)会更加困难。
+  </div>
+  <hr id='div12hr'>
+  <button onclick='changestate(13)' id='div13btn' class="storebtn">复制品</button>
+  <div style="text-align: left" id='div13' class='hidden'>
+  每个复制品在每个复制品时刻都有可能复制自身，这个复制概率是可提升的。你可以基于拥有的复制品数量获得对无限维度的加成。
+  <br>
+  当复制品数量到达无限时，你可以购买一个星系。这不会增加普通星系的成本。你可以拥有的复制品星系的数量是有上限的(上限可以提升)。一旦复制品数量达到无限，它们就不会再增长。
+  <br>
+  当离线时、或页面因最小化等处于不活跃状态、或延迟、或刷新速率小于50ms，复制品会有一个近似计算时间。这个可以导致很大程度上不同的结果，特别是在极低的数字(1-5)。
+  <br>
+  在复制品数量低(100-1000)时(以上条件均不存在时)，复制的期望值可能会有一些小的偏差。
+  <br><b>公式:
+  <br>无限维度倍数增长:</b> log2(复制品数)^2, 如果你有相关时间研究，就加上 复制品数^0.032 , 如果你有相关时间研究，就再乘以 5^星系数量。
+  <br><b>复制概率升级成本:</b>x(1e15) 每次升级
+  <br><b>时间间隔升级成本:</b>x(1e10) 每次升级
+  <br><b>最大星系升级成本:</b>1e(170+n*25+n^2*5)
+  </div>
+  <hr id='div13hr'>
+  <button onclick='changestate(14)' id='div14btn' class="storebtn">永恒</button>
+  <div style="text-align: left" id='div14' class='hidden'>
+  一旦你的无限点数数目达到无限，你就能够达到永恒。永恒将重置之前的一切，除了挑战时间、成就和总反物质。你也可以解锁一个新页面。
+  <br>
+  你的无限点数数目可以超过无限。你拥有的无限点数越多，在永恒时可以获得的永恒点数就越多。
+  <br>
+  <b>永恒点数获取公式:</b> floor(5^(floor(log10(无限点数))/308-0.7)*加成。 X10无限点数的时间研究计算在外层的floor(向下取整)之前。
+  </div>
+  <hr id='div14hr'>
+  <button onclick='changestate(15)' id='div15btn' class="storebtn">里程碑</button>
+  <div style="text-align: left" id='div15' class='hidden'>
+    为了使永恒变得更加快速、更加便捷，你的永恒次数越多，就能解锁各种不同的功能。这些功能或是使你在永恒开始时就拥有一些东西，或是解锁一个自动购买。
+    <br>
+    对于在永恒开始时拥有东西的功能，你将会保留你解锁里程碑那一轮相关的一些数据。(比如从第一次永恒到第二次永恒，你将保留自动购买)
+    <br>
+    最后一个里程碑需要100次永恒，并能允许全自动永恒。
+    </div>
+    <hr id='div15hr'>
+    <button onclick='changestate(16)'id='div16btn' class="storebtn">时间维度</button>
+  <div style="text-align: left" id='div16' class='hidden'>
+    在你第一次达到永恒后，你会解锁时间维度。你可以使用永恒点数购买时间维度，它们会提供时间碎片，时间碎片可以给你免费的减少时间间隔升级(不会增长这项升级的价格)。这些免费的减少时间间隔升级可以在无限中保留(你拥有更多的星系，免费升级的效果也会相应加强)。
+    <br>
+    就像其他维度一样，第二时间维度会生产第一时间维度，以此类推。
+    <br>
+    每个免费升级需要的时间碎片都会比前一个多33%(拥有相关时间研究可以降到25%)。
+    </div>
+    <hr id='div16hr'>
+  <button onclick='changestate(17)' id='div17btn' class="storebtn">时间研究</button>
+  <div style="text-align: left" id='div17' class='hidden'>
+    时间研究是永恒后的强力升级系统，需要消耗时间定律。时间研究是以经典的树状分布排列的，你在购买后一项之前必须先购买前一项。有时你需要抉择，要购买哪一项时间研究。因为即使你的时间定律足够，你也不能把它们全部买下来。
+    <br>
+    时间定律是一种有限的资源，每次购买后价格都会提升。它可以通过反物质、无限点数以及永恒点数来购买。
+    <br>
+    <b>重置时间研究:</b> 重置时间研究能让你移除升级树上的所有升级，并获取所有消耗过的时间定律。在永恒中你可以随时免费重置，在下一次永恒生效。
+    <br>
+    <b>成本:</b> 反物质：(1e20000^购买次数), 无限点数：(1e100^购买次数), 永恒点数：(2^购买次数)。
+    </div>
+    <hr id='div17hr'>
+    <button onclick='changestate(18)' id='div18btn' class="storebtn">时间膨胀</button> 
+<div style="text-align: left" id='div18' class="hidden"> 
+在你分别通过永恒挑战11、12五次，并总共拥有13000时间定律后，你可以花费5000时间定律来购买时间膨胀这个时间研究。时间膨胀后会开始一个新的永恒，并且你所有的维度/无限维度/时间维度的倍数的指数部分、以及减少时间间隔的倍数将会减少为0.75次方。  
+ <br>
+  当你时间膨胀后能达到 1.79e308 无限点数并永恒，作为奖励，你将会得到超光速粒子。只要你愿意，你可以随时进行时间膨胀，不限次数。
+<br> 
+超光速粒子生产另一项资源，膨胀时间。膨胀时间的数量在达到一定需求值后会给予一个免费星系。这些免费星系是永久存在的，除非你购买一些特定的时间膨胀升级。
+<br> 
+时间膨胀升级是花费膨胀时间来购买的升级。一些升级可以增加膨胀时间的获取量、或者重置免费星系，但是减少获取免费星系的需求值。此外，其中一项时间膨胀升级可以生产时间定律。时间膨胀升级的第一行可以购买无数次，但是其他的都不行。
+</div> 
+<hr id='div18hr'> 
+    <a href="https://www.reddit.com/r/AntimatterDimensions/comments/73jhqe/patashus_antimatter_dimensions_guide/?utm_content=title&utm_medium=hot&utm_source=reddit&utm_name=AntimatterDimensions">策略指南</a>
+  </body>
+  <script src='javascripts/howto.js'></script>
+  </html>
+  
+  
+  

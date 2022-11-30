@@ -1,0 +1,209 @@
+{
+    "header": [
+        " *   ",
+        " *   如非需要调试，本文件可删除",
+        " *   非专业人员可将本文件删除",
+        " *   详细介绍请参考: https://bazhan.wang/faq#INFO-JSON",
+        " *   "
+    ],
+    "resources": [
+        {
+            "url": "https://adonis142857.github.io/",
+            "path": "index.html",
+            "saved": true,
+            "size": 27577,
+            "children": [
+                {
+                    "url": "https://img.shields.io/badge/%E6%96%87%E6%A1%A3-%E4%B8%AD%E6%96%87%E7%89%88-blue.svg",
+                    "path": "img/文档-中文版-blue.svg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://img.shields.io/badge/document-English-blue.svg",
+                    "path": "img/document-English-blue.svg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163703960-6f321de5-4daa-4ea5-95b9-af9c96f1c1bc.jpg",
+                    "path": "img/163703960-6f321de5-4daa-4ea5-95b9-af9c96f1c1bc.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163703969-42e64f88-e727-4e7d-85f2-07a92e29b613.jpg",
+                    "path": "img/163703969-42e64f88-e727-4e7d-85f2-07a92e29b613.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/164894778-9710f18d-e055-4f62-bdcb-618687771d77.jpeg",
+                    "path": "img/164894778-9710f18d-e055-4f62-bdcb-618687771d77.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163703985-a2e2f8ac-101a-4f3c-903b-6850507f144b.jpg",
+                    "path": "img/163703985-a2e2f8ac-101a-4f3c-903b-6850507f144b.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163703988-8767185b-326a-4783-b2e2-f190322bb7d6.jpg",
+                    "path": "img/163703988-8767185b-326a-4783-b2e2-f190322bb7d6.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163702022-8c2bfea9-ed5d-4fe0-8ead-e8740014b92b.jpg",
+                    "path": "img/163702022-8c2bfea9-ed5d-4fe0-8ead-e8740014b92b.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163702084-97fb4a03-707c-475d-b88e-6fe2f8e87f92.jpg",
+                    "path": "img/163702084-97fb4a03-707c-475d-b88e-6fe2f8e87f92.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163704346-e7d92e7f-eba5-4673-8f15-3a96782c2e32.png",
+                    "path": "img/163704346-e7d92e7f-eba5-4673-8f15-3a96782c2e32.png",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163702325-5d427542-9ae5-4311-8979-d0d326a9832f.jpg",
+                    "path": "img/163702325-5d427542-9ae5-4311-8979-d0d326a9832f.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163702474-205baeec-f0ce-4e8d-96a4-36efe47534de.jpg",
+                    "path": "img/163702474-205baeec-f0ce-4e8d-96a4-36efe47534de.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163704147-afec1c79-799b-4db8-b547-1a2431d504c9.jpg",
+                    "path": "img/163704147-afec1c79-799b-4db8-b547-1a2431d504c9.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163704166-226b7ebb-92ce-4753-a3e7-77a87652a104.jpg",
+                    "path": "img/163704166-226b7ebb-92ce-4753-a3e7-77a87652a104.jpeg",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://user-images.githubusercontent.com/2707039/163704169-c5c715aa-7130-403b-b0d1-ec34fab094d8.png",
+                    "path": "img/163704169-c5c715aa-7130-403b-b0d1-ec34fab094d8.png",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://raw.githubusercontent.com/qhy040404/Image-Resources-Repo/master/zoi200509t3_1596761185.02415.png",
+                    "path": "img/zoi200509t3_1596761185.02415.png",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js",
+                    "path": "js/anchor.min.js",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://adonis142857.github.io/assets/css/style.css?v=0c5e656270af3dbd47e77023c9523c9b677c3f5b",
+                    "path": "css/style.css",
+                    "saved": true,
+                    "size": 76559,
+                    "children": []
+                }
+            ]
+        }
+    ],
+    "alias": "adonis142857-github-io-nez2w3a8",
+    "info": {
+        "remark": [],
+        "title": "程序员延寿指南 | Adonis142857.github.io",
+        "domain": "adonis142857.github.io",
+        "origin": "https://adonis142857.github.io",
+        "ip": "185.199.109.153",
+        "main": "index.html",
+        "url": "https://adonis142857.github.io/",
+        "totalSize": "104 kB",
+        "request": {
+            "headers": {
+                "accept": "text/html,*/*",
+                "accept-language": "zh-CN,zh;q=0.9",
+                "cache-control": "no-cache",
+                "cookie": "",
+                "referer": "https://adonis142857.github.io/",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
+                "x-scraper-website": "https://bazhan.wang/"
+            }
+        },
+        "response": {
+            "responseUrl": "https://adonis142857.github.io/",
+            "redirects": [],
+            "statusCode": 200,
+            "headers": {
+                "connection": "close",
+                "content-length": "16247",
+                "server": "GitHub.com",
+                "content-type": "text/html; charset=utf-8",
+                "permissions-policy": "interest-cohort=()",
+                "last-modified": "Sat, 07 Jan 2023 12:25:07 GMT",
+                "access-control-allow-origin": "*",
+                "strict-transport-security": "max-age=31556952",
+                "etag": "W/\"63b964a3-a041\"",
+                "expires": "Sat, 07 Jan 2023 12:38:50 GMT",
+                "cache-control": "max-age=600",
+                "x-proxy-cache": "MISS",
+                "x-github-request-id": "ED78:4B83:F3D0EB:15830D6:63B96582",
+                "accept-ranges": "bytes",
+                "date": "Sat, 07 Jan 2023 12:28:50 GMT",
+                "via": "1.1 varnish",
+                "age": "0",
+                "x-served-by": "cache-hnd18735-HND",
+                "x-cache": "MISS",
+                "x-cache-hits": "0",
+                "x-timer": "S1673094530.416597,VS0,VE177",
+                "vary": "Accept-Encoding",
+                "x-fastly-request-id": "335d9ebeff5377b1df8760a24678c6a852c6bfe3"
+            }
+        },
+        "time": {
+            "start": "2023-01-07T12:28:50.310Z",
+            "end": "2023-01-07T12:28:52.744Z"
+        }
+    },
+    "options": {
+        "url": "https://adonis142857.github.io/",
+        "referer": "",
+        "cookies": "",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
+        "formatter": [],
+        "filenameGenerator": "byType"
+    }
+}

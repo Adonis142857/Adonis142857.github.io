@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>hello world</title>
+</head>
+
+<body>
+    <div id="time"></div>
+    <input type="button" id="start" value="开始">
+    <input type="button" id="stop" value="暂停">
+    <input type="button" id="reset" value="重置">
+
+    <script>
+        var timer = (function () {
+            var start, temp;
+
+            function run() {
+                start = start || +new Date();
+                if (temp) {
+                    start += (new Date() - temp);
+                    temp = 0;
+                }
+            }
+
+            function stop() {
+                if (start && !temp) {
+                    temp = +new Date();
+                }
+            }
+
+            function reset() {
+                start = 0;
+                temp = 0;
+            }
+
+            function getTime() {
+                return start ? (temp ? temp : new Date()) - start : 0;
+            }
+
+            function getText() {
+                var now = getTime() / 1000 >> 0;
+                var h, m, s;
+                s = now % 60;
+                now = now / 60 >> 0;
+                m = now % 60;
+                now = now / 60 >> 0;
+                h = now % 24;
+                now = now / 24 >> 0;
+                return now + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒 ';
+            }
+
+            return {
+                start: run,
+                stop: stop,
+                reset: reset,
+                getTime: getTime,
+                getText: getText
+            }
+        })();
+
+        function getId(id) {
+            return document.getElementById(id);
+        }
+
+        getId('start').onclick = timer.start;
+        getId('stop').onclick = timer.stop;
+        getId('reset').onclick = timer.reset;
+
+        setInterval(function () {
+            getId('time').innerText = timer.getText();
+        }, 100);
+    </script>
+</body>
+
+</html>
