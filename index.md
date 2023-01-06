@@ -6,4 +6,4 @@
 那么，祝你看的愉快
 
 # 是时候结束了
-[友链（单方向的）](XRXRXR123.github.io)
+[友链（单方向的）](https://XRXRXR123.github.io)
