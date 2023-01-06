@@ -1,0 +1,94 @@
+<!doctype html>
+<html ng-app="app" ng-controller="MainController" ng-click="docClick()">
+<head>
+  <meta charset="utf-8">
+  <script src="jquery.min.js"></script>
+  <script src="moment.min.js"></script>
+  <script src="angular.min.js"></script>
+  <style>
+    body {
+      background: black;
+      color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <div ng-cloak ng-if="progress()">
+    <h1><a href="..">发布完成</a></h1>
+    <audio controls loop>
+      <source src="zadupd02.ogg" type="audio/ogg">
+    </audio>
+  </div>
+  <div ng-cloak ng-if="!progress()">
+    <p>暂无发布中的内容。60秒后将自动刷新。</p>
+    <p ng-if="versionData">最新的发布版本为 {{versionData.version}} ，发布于 {{versionData.updated.format()}} ，距今 {{versionData.updated.fromNow()}}。</p>
+  </div>
+  <div ng-if="!progress">载入中……</div>
+</body>
+<script>
+angular.module('app', []).controller('MainController', function($scope, $location, $timeout, $http) {
+  $scope.progress = function() {
+    return !!$location.search().progress;
+  }
+  $scope.nav = function() {
+    document.location = '..';
+  }
+  $scope.docClick = function() {
+    if ($scope.progress()) {
+      $scope.nav();
+    }
+  }
+  $http.get('../version.json').success(function(data, status, xhr) {
+    console.log('versionJson', data);
+    $scope.versionData = data;
+    data.updated = moment(data.updated);
+  });
+
+  if ($scope.progress()) {
+    if (!!$location.search().quiet) {
+      $scope.nav();
+    }
+    else {
+      $timeout(function(){$('audio')[0].play();}, 0);
+    }
+    // https://developer.mozilla.org/en-US/docs/Web/API/notification
+    function doNotify() {
+      var notification = new Notification("模拟虫群发布完成", {body:document.location.hostname});
+      notification.onclick = function() {
+        window.focus();
+        $('audio')[0].pause();
+        $scope.nav();
+      };
+    }
+    $scope.doNotify = doNotify;
+    function checkNotify() {
+      // Let's check if the browser supports notifications
+      if (!("Notification" in window)) {
+        //alert("This browser does not support desktop notification");
+      }
+    
+      // Let's check if the user is okay to get some notification
+      else if (Notification.permission === "granted") {
+        // If it's okay let's create a notification
+        doNotify();
+      }
+    
+      // Otherwise, we need to ask the user for permission
+      else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+          // If the user is okay, let's create a notification
+          if (permission === "granted") {
+            doNotify();
+          }
+        });
+      }
+    
+      // At last, if the user already denied any notification, and you 
+      // want to be respectful there is no need to bother them any more.
+    }
+    checkNotify();
+  }
+  $timeout(function(){document.location.reload();}, 60 * 1000);
+});
+</script>
+</html>
