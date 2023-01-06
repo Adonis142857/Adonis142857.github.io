@@ -23,7 +23,7 @@ $(function(){
     var musicImgsData = ['img/0.jpg','img/0.jpg','img/0.jpg','img/0.jpg','img/0.jpg','img/0.jpg','img/0.jpg','img/0.jpg','img/0.jpg','img/0.jpg']    // 图片地址数组
     var musicNameData = ['雨','If We Have Each Other','回梦游仙','涅槃 (Phoenix)','I Want My Tears Back','千千阙歌','Élan','Digital World','Still Worth Fighting For','难却'];                   // 歌曲名数组
     var artistNameData = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']            // 创作歌手数组
-    var musicUrls=['mp3/雨.mp3','mp3/IfWeHaveEachOther.mp3','mp3/回梦游仙.mp3','mp3/Phoenix.mp3','mp3/IWantMyTearsBack.mp3','mp3/千千阙歌.mp3','mp3/Élan.mp3','mp3/DigitalWorld.mp3','mp3/StillWorthFightingFor.mp3','mp3/难却.mp3'];// 歌曲mp3数组
+    var musicUrls=['mp3/雨.mp3','mp3/IfWeHaveEachOther.mp3','mp3/回梦游仙.mp3','mp3/Phoenix.mp3','mp3/IWantMyTearsBack.mp3','mp3/千千阙歌.mp3','mp3/Elan.mp3','mp3/DigitalWorld.mp3','mp3/StillWorthFightingFor.mp3','mp3/难却.mp3'];// 歌曲mp3数组
     var currIndex = -1;              // 当前播放索引
     
     var buffInterval = null          // 初始化定时器 判断是否需要缓冲
