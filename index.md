@@ -16,5 +16,6 @@
 [反物质维度](https://Adonis142857.github.io/fwzwd/index.html)
 [模拟虫群](https://Adonis142857.github.io/swarm/index.html)
 [太空公司](https://Adonis142857.github.io/spacecompany/index.html)
+[文章收集](https://Adonis142857.github.io/select/index.html)
 [睡眠知识小科普](https://Adonis142857.github.io/humansystem/index.html)
 [听听音乐](https://Adonis142857.github.io/musicplayer/index.html)
