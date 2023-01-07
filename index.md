@@ -562,3 +562,236 @@
 一次愉快的睡眠
 
 断多少发线
+
+### My Prayer
+
+Dear God
+
+敬爱的上帝啊
+
+I know that she's out there
+
+我知道她就在那里
+
+the one i'm suppose to share my whole life with.
+
+那个我想把我的一生都奉献给的女孩
+
+And in time
+
+总会有一天
+
+you'll show her to me
+
+你会把她带到我身边的
+
+Will you take care of her
+
+你要好好照顾她
+
+comfort her
+
+在她伤心的时候安慰她
+
+and protect her
+
+保护她
+
+until that day we meet
+
+直到我们见面的那一天
+
+And let her know
+
+并让她知道
+
+my heart
+
+我的心
+
+is beating with hers
+
+只为她而跳动
+
+In a dream i hold you close
+
+在梦中我把你紧紧抱住
+
+Embracing you with my hands
+
+用手将你拥入怀中
+
+You gazed at me with eyes full of love
+
+你用着那充满爱的眼神凝视着我
+
+And made me understand
+
+让我明白了
+
+That i was meant to share it with you
+
+我命中注定和你分享这一切
+
+My heart my mind my soul
+
+我的全部，我的一切
+
+Then i open my eyes
+
+然而我醒了过来，睁开眼睛
+
+And all i see reality shows i'm alone
+
+看到的却还是只有我孤单一人
+
+But i know someday that you'll be by my side
+
+但我很清楚，总有一天你会来到我的身边
+
+Cause i know god's just waiting till the time is right
+
+因为我知道，上帝只是在等待那个对的时间
+
+God will you keep her safe from the thunderstorm
+
+敬爱的上帝，你能不能在暴风雨来临的时候，让她平安
+
+When the day's cold will you keep her warm
+
+你能不能在天气寒冷的时候，给她温暖
+
+When the darkness falls
+
+当黑暗降临
+
+will you please shine her the way
+
+你能不能照亮她前方的路
+
+God will you let her know that i love her so
+
+敬爱的上帝啊，你能不能让她知道我如此的爱她
+
+When theres no one there that she's not alone
+
+让她知道，即使世界上没有其他人，她也不会孤单
+
+Just close her eyes and let her know
+
+让她轻轻的闭上眼睛，告诉她
+
+My heart is beating with hers
+
+我的心，只为她而跳动
+
+So i prayed until that day (prayed until that day)
+
+我每天都在祈祷着
+
+When our hearts will beat as one
+
+祈祷着我们在一起感受着彼此的心跳的那一天
+
+I will wait so patiently (patiently)
+
+我会一直耐心的等待，
+
+For that day to come (for that day to come)
+
+只为着这一天的来临。
+
+I know someday that you'll be by my side
+
+我很清楚，总有一天，你会来到我的身边
+
+Cause i know god's just waiting till the time is right
+
+因为我知道，上帝只是在等待那个对的时间
+
+God will you keep her safe from the thunderstorm
+
+敬爱的上帝，你能不能在暴风雨来临的时候，让她平安
+
+When the day's cold will you keep her warm
+
+你能不能在天气寒冷的时候，给她温暖
+
+When the darkness falls
+
+当黑暗降临
+
+will you please shine her the way (shine he the way)
+
+你能不能照亮她前方的路
+
+God will you let her know that i love her so
+
+敬爱的上帝啊，你能不能让她知道我如此的爱她
+
+When theres no one there that she's not alone
+
+让她知道，即使世界上没有其他人，她也不会孤单
+
+Just close her eyes and let her know
+
+让她轻轻的闭上眼睛，告诉她
+
+My heart is beating with hers
+
+我的心，只为她而跳动
+
+Is beating with hers (ooo)
+
+只为她而跳动
+
+My heart is beating with hers (oooo)
+
+我的心，只为她而跳动
+
+It's beating with hers
+
+只为她而跳动
+
+God will you keep her safe from the thunderstorm
+
+敬爱的上帝，你能不能在暴风雨来临的时候，让她平安
+
+When the day's cold will you keep her warm
+
+你能不能在天气寒冷的时候，给她温暖
+
+When the darkness falls
+
+当黑暗降临
+
+will you please shine her the way
+你能不能照亮她前方的路
+
+God will you let her know that i love her so
+
+敬爱的上帝啊，你能不能让她知道我如此的爱她
+
+When theres no one there that she's not alone
+
+让她知道，即使世界上没有其他人，她也不会孤单
+
+Just close her eyes and let her know
+
+让她轻轻的闭上眼睛，告诉她
+
+My heart is beating with hers
+
+我的心，只为她而跳动
+
+Oh...
+
+哦～～
+
+it's beating with hers
+
+只为她而跳动
+
+(it's beating with yours)
+
+只为你而跳动
