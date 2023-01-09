@@ -1,0 +1,97 @@
+{
+    "header": [
+        " *   ",
+        " *   如非需要调试，本文件可删除",
+        " *   非专业人员可将本文件删除",
+        " *   详细介绍请参考: https://bazhan.wang/faq#INFO-JSON",
+        " *   "
+    ],
+    "resources": [
+        {
+            "url": "https://adonis142857.github.io/",
+            "path": "index.html",
+            "saved": true,
+            "size": 20882,
+            "children": [
+                {
+                    "url": "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js",
+                    "path": "js/anchor.min.js",
+                    "saved": true,
+                    "size": 0,
+                    "children": []
+                },
+                {
+                    "url": "https://adonis142857.github.io/assets/css/style.css?v=4f8ea895c6904a5d6e43d1396f778998681715d4",
+                    "path": "css/style.css",
+                    "saved": true,
+                    "size": 76559,
+                    "children": []
+                }
+            ]
+        }
+    ],
+    "alias": "adonis142857-github-io-xi662sqfv",
+    "info": {
+        "remark": [],
+        "title": "01 | Adonis142857.github.io",
+        "domain": "adonis142857.github.io",
+        "origin": "https://adonis142857.github.io",
+        "ip": "185.199.111.153",
+        "main": "index.html",
+        "url": "https://adonis142857.github.io/",
+        "totalSize": "97.4 kB",
+        "request": {
+            "headers": {
+                "accept": "text/html,*/*",
+                "accept-language": "zh-CN,zh;q=0.9",
+                "cache-control": "no-cache",
+                "cookie": "",
+                "referer": "https://adonis142857.github.io/",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
+                "x-scraper-website": "https://bazhan.wang/"
+            }
+        },
+        "response": {
+            "responseUrl": "https://adonis142857.github.io/",
+            "redirects": [],
+            "statusCode": 200,
+            "headers": {
+                "connection": "close",
+                "content-length": "19284",
+                "server": "GitHub.com",
+                "content-type": "text/html; charset=utf-8",
+                "permissions-policy": "interest-cohort=()",
+                "last-modified": "Mon, 09 Jan 2023 02:06:56 GMT",
+                "access-control-allow-origin": "*",
+                "strict-transport-security": "max-age=31556952",
+                "etag": "W/\"63bb76c0-aeff\"",
+                "expires": "Mon, 09 Jan 2023 02:26:58 GMT",
+                "cache-control": "max-age=600",
+                "x-proxy-cache": "MISS",
+                "x-github-request-id": "4B1A:460A:152ADD8:1CC0697:63BB791A",
+                "accept-ranges": "bytes",
+                "date": "Mon, 09 Jan 2023 02:16:58 GMT",
+                "via": "1.1 varnish",
+                "age": "0",
+                "x-served-by": "cache-hnd18735-HND",
+                "x-cache": "MISS",
+                "x-cache-hits": "0",
+                "x-timer": "S1673230618.170813,VS0,VE170",
+                "vary": "Accept-Encoding",
+                "x-fastly-request-id": "54e5fa06ab73e34bad1ba0d67e453a4e62c6f3e8"
+            }
+        },
+        "time": {
+            "start": "2023-01-09T02:16:58.138Z",
+            "end": "2023-01-09T02:16:58.737Z"
+        }
+    },
+    "options": {
+        "url": "https://adonis142857.github.io/",
+        "referer": "",
+        "cookies": "",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
+        "formatter": [],
+        "filenameGenerator": "byType"
+    }
+}
