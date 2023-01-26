@@ -1,0 +1,95 @@
+{
+    "header": [
+        " *   ",
+        " *   如非需要调试，本文件可删除",
+        " *   非专业人员可将本文件删除",
+        " *   详细介绍请参考: https://bazhan.wang/faq#INFO-JSON",
+        " *   "
+    ],
+    "resources": [
+        {
+            "url": "https://down.52pojie.cn/",
+            "path": "index.html",
+            "saved": true,
+            "size": 11309,
+            "children": [
+                {
+                    "url": "https://down.52pojie.cn/.fancyindex/js/app.2380c5d4.js",
+                    "path": "js/app.2380c5d4.js",
+                    "saved": true,
+                    "size": 647481
+                },
+                {
+                    "url": "https://down.52pojie.cn/.fancyindex/css/app.b98f1720.css",
+                    "path": "css/app.b98f1720.css",
+                    "saved": true,
+                    "size": 163888
+                },
+                {
+                    "url": "https://down.52pojie.cn/favicon.ico",
+                    "path": "favicon.ico",
+                    "saved": true,
+                    "size": 16958
+                }
+            ]
+        }
+    ],
+    "alias": "down-52pojie-cn-tmgew4ep",
+    "info": {
+        "remark": [],
+        "title": "爱盘 - 最新的在线破解工具包",
+        "domain": "down.52pojie.cn",
+        "origin": "https://down.52pojie.cn",
+        "ip": "123.6.81.73",
+        "main": "index.html",
+        "url": "https://down.52pojie.cn/",
+        "totalSize": "840 kB",
+        "request": {
+            "headers": {
+                "accept": "text/html,*/*",
+                "accept-language": "zh-CN,zh;q=0.9",
+                "cache-control": "no-cache",
+                "cookie": "",
+                "referer": "https://down.52pojie.cn/",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
+                "x-scraper-website": "https://bazhan.wang/"
+            }
+        },
+        "response": {
+            "responseUrl": "https://down.52pojie.cn/",
+            "redirects": [],
+            "statusCode": 200,
+            "headers": {
+                "server": "CWAP-waf",
+                "date": "Wed, 25 Jan 2023 11:51:26 GMT",
+                "content-type": "text/html",
+                "transfer-encoding": "chunked",
+                "connection": "close",
+                "set-cookie": [
+                    "wzws_sessionid=gTI4OTRmYqBj0Re+gjNkNWIwNIA1NC4yNTAuNC41MA==; Path=/; HttpOnly"
+                ],
+                "age": "0",
+                "cache-control": "max-age=14400",
+                "strict-transport-security": "max-age=2592000",
+                "var-cache": "hit:0",
+                "vary": "Accept-Encoding",
+                "wzws-ray": "012-1674647324.617-s9zzuc-s10zzuc-s5zzuc",
+                "x-frame-options": "SAMEORIGIN",
+                "x-xss-protection": "1; mode=block",
+                "x-powered-by": "anyu.qianxin.com"
+            }
+        },
+        "time": {
+            "start": "2023-01-25T11:51:26.061Z",
+            "end": "2023-01-25T11:51:29.202Z"
+        }
+    },
+    "options": {
+        "url": "https://down.52pojie.cn/",
+        "referer": "",
+        "cookies": "",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
+        "formatter": [],
+        "filenameGenerator": "byType"
+    }
+}
