@@ -45,14 +45,12 @@ const GameMenu = () => {
           <a
             target="_blank"
             className="text-xs text-center my-2"
-            href="https://github.com/mrleidesen/Outext"
+            href="https://Adonis142857.github.io"
           >
-            ❤❤❤ 一人在家 ❤❤❤ <br />
-            ❤❤❤ 开源仓库 ❤❤❤ <br />
-            ❤❤🔞 不见不散 🔞❤❤ <br />
-            ❤❤🔞 等你来写 🔞❤❤ <br />
+            这是<br />
+            属于我的故事<br />
           </a>
-          <h3 className="text-xs my-2">版本：v{VERSION}</h3>
+          <h3 className="text-xs my-2">版本：v1.0</h3>
           <Button className="my-3" onClick={handleGameStart}>
             开始游戏
           </Button>
@@ -67,7 +65,7 @@ const GameStart = () => {
     useStore();
   const { user, setUser } = useUser();
   const [msg, setMsg] = React.useState("");
-  const maxValue = 10;
+  const maxValue = 1000;
   const userKeys = Object.keys(user) as TLimitType[];
   const typeMap: { [key in TLimitType]: string } = {
     power: "力量",
@@ -109,7 +107,7 @@ const GameStart = () => {
     } else if (count >= 50 && count < 100) {
       setMsg(`你已经刷了${count}次了，真刷不到想要的就放弃吧`);
     } else if (count >= 100) {
-      setMsg(`你已经刷了${count}次了，求求你了，别刷了！刷不到了！`);
+      setMsg(`你已经刷了${count}次了，其实，属性根本毫无用处！`);
     }
   };
 
