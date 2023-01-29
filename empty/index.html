@@ -1,77 +1,43 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>hello world</title>
-</head>
-
-<body>
-    <div id="time"></div>
-    <input type="button" id="start" value="开始">
-    <input type="button" id="stop" value="暂停">
-    <input type="button" id="reset" value="重置">
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+        <script src="https://unpkg.com/video.js/dist/video.js"></script>
+        <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+        <!-- videojs-contrib-hls 用于在电脑端播放 如果只需移动端播放可以不引入 -->
+    </head>
+    <body>
+        <style>
+            .video-js .vjs-tech {position: relative !important;}
+        </style>
+        <div>
+            <video id="myVideo" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{}'
+             style='width: 100%;height: auto'>
+                <source id="source" src="https://usersfiles.whatfugui.com:59888/f/data7/E62B866F2FBC4EB6/8422FD393C110529/play.m3u8?_KS=f0cfb260c4c3279591c9ddc54c83f621&_KE=1674874567" type="application/x-mpegURL">
+                </source>
+            </video>
+        </div>
+    </body>
 
     <script>
-        var timer = (function () {
-            var start, temp;
-
-            function run() {
-                start = start || +new Date();
-                if (temp) {
-                    start += (new Date() - temp);
-                    temp = 0;
-                }
+        var myVideo = videojs('myVideo', {
+            bigPlayButton: true,
+            textTrackDisplay: false,
+            posterImage: false,
+            errorDisplay: false,
+        })
+        myVideo.play()
+        var changeVideo = function(vdoSrc) {
+            if (/\.m3u8$/.test(vdoSrc)) {
+                myVideo.src({
+                    src: vdoSrc,
+                    type: 'application/x-mpegURL'
+                })
+            } else {
+                myVideo.src(vdoSrc)
             }
-
-            function stop() {
-                if (start && !temp) {
-                    temp = +new Date();
-                }
-            }
-
-            function reset() {
-                start = 0;
-                temp = 0;
-            }
-
-            function getTime() {
-                return start ? (temp ? temp : new Date()) - start : 0;
-            }
-
-            function getText() {
-                var now = getTime() / 1000 >> 0;
-                var h, m, s;
-                s = now % 60;
-                now = now / 60 >> 0;
-                m = now % 60;
-                now = now / 60 >> 0;
-                h = now % 24;
-                now = now / 24 >> 0;
-                return now + ' 天 ' + h + ' 时 ' + m + ' 分 ' + s + ' 秒 ';
-            }
-
-            return {
-                start: run,
-                stop: stop,
-                reset: reset,
-                getTime: getTime,
-                getText: getText
-            }
-        })();
-
-        function getId(id) {
-            return document.getElementById(id);
+            myVideo.load();
+            myVideo.play();
         }
-
-        getId('start').onclick = timer.start;
-        getId('stop').onclick = timer.stop;
-        getId('reset').onclick = timer.reset;
-
-        setInterval(function () {
-            getId('time').innerText = timer.getText();
-        }, 100);
     </script>
-</body>
-
-</html>
